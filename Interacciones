@@ -1,0 +1,266 @@
+Function LetraCol(NumCol As Long) As String
+
+    Dim Arreglo
+    Arreglo = Split(Cells(1, NumCol).Address(True, False), "$")
+    LetraCol = Arreglo(0)
+    
+End Function
+Sub AbrirModelo1()
+
+    Dim abrir As Variant
+    Dim ruta As String
+    
+    ruta = "C:\Users\Chrystian Muzzio\Desktop\ArchivosAplicativo\Modelo_1W.docx"
+    abrir = VBA.Shell("C:\Program Files (x86)\Microsoft Office\root\Office16\WINWORD.EXE """ & ruta & """", vbNormalFocus)
+    
+End Sub
+
+Sub AbrirModelo2()
+
+    Dim abrir As Variant
+    Dim ruta As String
+    
+    ruta = "C:\Users\Chrystian Muzzio\Desktop\ArchivosAplicativo\Modelo_2W.docx"
+    abrir = VBA.Shell("C:\Program Files (x86)\Microsoft Office\root\Office16\WINWORD.EXE """ & ruta & """", vbNormalFocus)
+    
+End Sub
+
+Sub AbrirGAMS1()
+    
+    Dim abrir As Variant
+    Dim ruta As String
+    
+    ruta = "C:\Users\Chrystian Muzzio\Documents\gamsdir\projdir\Modelo_1.gms"
+    abrir = VBA.Shell("C:\Program Files\GAMS23.3\gamside.exe """ & ruta & """", vbNormalFocus)
+
+End Sub
+
+Sub AbrirGAMS2()
+    
+    Dim abrir As Variant
+    Dim ruta As String
+    
+    ruta = "C:\Users\Chrystian Muzzio\Documents\gamsdir\projdir\Modelo_2.gms"
+    abrir = VBA.Shell("C:\Program Files\GAMS23.3\gamside.exe """ & ruta & """", vbNormalFocus)
+
+End Sub
+
+Sub CrearModelo1()
+
+    Dim WordApp As Word.Application
+    Dim WordDoc As Word.Document
+    Dim r As Long
+    Dim FileName As String
+    
+    Sheets("POSICIONES_CELDAS").Select
+    
+    On Error Resume Next
+    Set WordApp = GetObject(, "Word.Application")
+    On Error GoTo errorhandle:
+    If WordApp Is Nothing Then
+        Set WordApp = New Word.Application
+    End If
+    WordApp.Visible = True
+    
+    
+    FileName = "C:\Users\Chrystian Muzzio\Desktop\ArchivosAplicativo\Modelo_1W.docx"
+
+    Set WordDoc = WordApp.Documents.Open("C:\Users\Chrystian Muzzio\Desktop\ArchivosAplicativo" & "\Modelo_1.docx")
+    WordDoc.Bookmarks("i").Range.InsertAfter Cells(6, 5).Text
+    WordDoc.Bookmarks("j").Range.InsertAfter Cells(7, 5).Text
+    WordDoc.Bookmarks("k").Range.InsertAfter Cells(8, 5).Text
+    WordDoc.Bookmarks("b").Range.InsertAfter Cells(9, 5).Text
+    WordDoc.Bookmarks("w").Range.InsertAfter Cells(10, 5).Text
+    WordDoc.Bookmarks("mp").Range.InsertAfter Cells(11, 5).Text
+    WordDoc.Bookmarks("mn").Range.InsertAfter Cells(12, 5).Text
+    WordDoc.Bookmarks("c").Range.InsertAfter Cells(23, 4).Text
+    WordDoc.Bookmarks("mat_x_niv").Range.InsertAfter Cells(24, 4).Text
+    WordDoc.SaveAs2 FileName
+    WordDoc.Close
+
+    Set WordApp = Nothing
+    
+    MsgBox "Código de Modelo 1 creado", vbInformation, "Operación Exitosa"
+    Exit Sub
+
+errorhandle:
+MsgBox "Ups, ha ocurrido un error...", vbCritical, "Error"
+
+End Sub
+
+Sub CrearModelo2()
+
+    Dim WordApp As Word.Application
+    Dim WordDoc As Word.Document
+    Dim r As Long
+    Dim FileName As String
+    
+    Sheets("POSICIONES_CELDAS").Select
+    
+    On Error Resume Next
+    Set WordApp = GetObject(, "Word.Application")
+    On Error GoTo errorhandle:
+    If WordApp Is Nothing Then
+        Set WordApp = New Word.Application
+    End If
+    WordApp.Visible = True
+    
+    
+    FileName = "C:\Users\Chrystian Muzzio\Desktop\ArchivosAplicativo\Modelo_2W.docx"
+
+    Set WordDoc = WordApp.Documents.Open("C:\Users\Chrystian Muzzio\Desktop\ArchivosAplicativo" & "\Modelo_2.docx")
+    WordDoc.Bookmarks("q").Range.InsertAfter Cells(15, 5).Text
+    WordDoc.Bookmarks("r").Range.InsertAfter Cells(16, 5).Text
+    WordDoc.Bookmarks("in").Range.InsertAfter Cells(25, 4).Text
+    WordDoc.Bookmarks("me").Range.InsertAfter Cells(26, 4).Text
+    WordDoc.Bookmarks("av").Range.InsertAfter Cells(27, 4).Text
+    WordDoc.Bookmarks("p").Range.InsertAfter Cells(20, 5).Text
+    WordDoc.Bookmarks("f").Range.InsertAfter Cells(21, 5).Text
+    WordDoc.SaveAs2 FileName
+    WordDoc.Close
+
+    Set WordApp = Nothing
+    
+    MsgBox "Código de Modelo 2 creado", vbInformation, "Operación Exitosa"
+    Exit Sub
+
+errorhandle:
+MsgBox "Ups, ha ocurrido un error...", vbCritical, "Error"
+
+End Sub
+
+Sub AccesoResultadoModelo1()
+
+    Dim FileToOpen As Variant
+    Dim OpenBook As Workbook
+    
+    Dim profesores As Long
+    Dim ra As Long
+    Dim niveles As Long
+    Dim materias2 As Long
+    
+    Dim a_rm1 As Long
+    Dim b_rm1 As Long
+    Dim a_rm2 As Long
+    Dim b_rm2 As Long
+    
+    Application.ScreenUpdating = False
+    
+    profesores = UserForm1.i_profesores.Value
+    niveles = UserForm1.k_niveles.Value
+    ra = UserForm1.l_RA.Value
+    materias2 = ra * niveles
+    
+    a_rm1 = 3 + materias2
+    b_rm1 = a_rm1 + materias2
+    a_rm2 = 3 + materias2
+    b_rm2 = a_rm2 + materias2
+    
+    FileToOpen = "C:\Users\Chrystian Muzzio\Documents\gamsdir\projdir\RESULTADO_MODELO1.xls"
+    
+    Set OpenBook = Application.Workbooks.Open(FileToOpen)
+    OpenBook.Sheets(2).Range("A1:" & LetraCol(profesores + 1) & (1 + materias2)).Copy
+    ThisWorkbook.Worksheets("RESULTADO_MODELO1").Range("A1").PasteSpecial xlPasteValues
+    Application.CutCopyMode = False
+    OpenBook.Close False
+    ActiveWorkbook.Save
+    
+    Sheets("RESULTADO_MODELO1").Select
+    Range("A2:A" & VBA.CStr(1 + materias2)).Select
+    Selection.Copy
+    Range("B" & VBA.CStr(a_rm1 + 1) & ":B" & VBA.CStr(b_rm1)).Select
+    Selection.PasteSpecial Paste:=xlPasteValues
+    Application.CutCopyMode = False
+    ActiveWorkbook.Save
+    
+    Application.ScreenUpdating = True
+
+End Sub
+
+Sub AccesoResultadoModelo2()
+
+    Dim FileToOpen As Variant
+    Dim OpenBook As Workbook
+    
+    Dim profesores As Long
+    Dim ra As Long
+    Dim niveles As Long
+    Dim materias2 As Long
+    
+    Dim a_rm1 As Long
+    Dim b_rm1 As Long
+    Dim a_rm2 As Long
+    Dim b_rm2 As Long
+    
+    Application.ScreenUpdating = False
+    
+    profesores = UserForm1.i_profesores.Value
+    niveles = UserForm1.k_niveles.Value
+    ra = UserForm1.l_RA.Value
+    materias2 = ra * niveles
+    
+    a_rm1 = 3 + materias2
+    b_rm1 = a_rm1 + materias2
+    a_rm2 = 3 + materias2
+    b_rm2 = a_rm2 + materias2
+    
+    FileToOpen = "C:\Users\Chrystian Muzzio\Documents\gamsdir\projdir\RESULTADO_MODELO2.xls"
+    
+    Set OpenBook = Application.Workbooks.Open(FileToOpen)
+    OpenBook.Sheets(2).Range("A1:" & LetraCol(profesores + 1) & (1 + materias2)).Copy
+    ThisWorkbook.Worksheets("RESULTADO_MODELO2").Range("A1").PasteSpecial xlPasteValues
+    Application.CutCopyMode = False
+    OpenBook.Close False
+    ActiveWorkbook.Save
+    
+    Sheets("RESULTADO_MODELO1").Select
+    Range("B" & VBA.CStr(a_rm1 + 1) & ":B" & VBA.CStr(b_rm1)).Select
+    Selection.Copy
+    Sheets("RESULTADO_MODELO2").Select
+    Range("B" & VBA.CStr(a_rm2 + 1)).Select
+    Selection.PasteSpecial Paste:=xlPasteValues
+    
+    Application.CutCopyMode = False
+    Application.ScreenUpdating = True
+
+End Sub
+
+Sub BorrarGenerados()
+    
+    Dim m1w As String
+    Dim m2w As String
+    Dim m1e As String
+    Dim m2e As String
+    
+    m1w = "C:\Users\Chrystian Muzzio\Desktop\ArchivosAplicativo\Modelo_1W.docx"
+    m2w = "C:\Users\Chrystian Muzzio\Desktop\ArchivosAplicativo\Modelo_2W.docx"
+    m1e = "C:\Users\Chrystian Muzzio\Documents\gamsdir\projdir\RESULTADO_MODELO1.xls"
+    m2e = "C:\Users\Chrystian Muzzio\Documents\gamsdir\projdir\RESULTADO_MODELO2.xls"
+    
+    If VBA.Dir(m1w) <> "" Then
+        VBA.Kill (m1w)
+        If VBA.Dir(m2w) <> "" Then
+            VBA.Kill (m2w)
+            If VBA.Dir(m1e) <> "" Then
+                VBA.Kill (m1e)
+                If VBA.Dir(m2e) <> "" Then
+                    VBA.Kill (m2e)
+                End If
+            End If
+        End If
+    End If
+    
+    Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
+    
+    For i = Sheets.Count To 2 Step -1
+        If Sheets(i).Visible = False Then
+            Sheets(i).Delete
+        ElseIf Sheets(i).Visible = True Then
+            Sheets(i).Delete
+        End If
+    Next i
+    
+    Application.DisplayAlerts = True
+    Application.ScreenUpdating = True
+End Sub
