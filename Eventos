@@ -1,0 +1,139 @@
+Option Explicit
+Private Declare Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpClassName As String, ByVal lpWindowName As String) As Long
+Private Declare Function DrawMenuBar Lib "user32" (ByVal hWnd As Long) As Long
+Private Declare Function SetWindowLong Lib "user32" Alias "SetWindowLongA" (ByVal hWnd As Long, ByVal nIndex As Long, ByVal dwNewLong As Long) As Long
+Private Declare Function GetWindowLong Lib "user32" Alias "GetWindowLongA" (ByVal hWnd As Long, ByVal nIndex As Long) As Long
+Private Const WS_MINIMIZEBOX As Long = &H20000
+Private Const GWL_STYLE As Long = (-16)
+Dim niveles As Long
+Dim materias As Long
+Dim profesores As Long
+
+Private Sub btnCrearReporte_Click()
+    
+    Dim profesores As Variant
+    Dim materias As Variant
+    Dim niveles As Variant
+    Dim ra As Variant
+    
+    profesores = UserForm1.i_profesores.Value
+    materias = UserForm1.j_materias.Value
+    niveles = UserForm1.k_niveles.Value
+    ra = UserForm1.l_RA.Value
+    
+    If profesores = "" Or materias = "" Or niveles = "" Or ra = "" Then
+        MsgBox Prompt:="¡Ingrese todos los valores correctamente!", Buttons:=vbCritical, Title:="Advertencia"
+    ElseIf niveles <> 3 Then
+        MsgBox Prompt:="Este programa solo puede trabajar con 3 niveles de carrera." & vbNewLine & "Ingrese de nuevo los valores!", Buttons:=vbCritical, Title:="Advertencia"
+    ElseIf materias <= profesores Then
+        MsgBox Prompt:="El número de materias debe ser mayor al número de profesores." & vbNewLine & "¡Ingrese de nuevo los valores!", Buttons:=vbCritical, Title:="Advertencia"
+    Else
+        Call ResultadoModelo2
+        Call AccesoResultadoModelo2
+        Call ReporteFinal
+        MsgBox Prompt:="¡Ejecución exitosa!" & vbNewLine & vbNewLine & "Reporte Final creado.", Buttons:=vbInformation + vbOKOnly, Title:="Información"
+    End If
+    
+End Sub
+
+Private Sub btnGenerarModelo1_Click()
+    
+    Dim profesores As Variant
+    Dim materias As Variant
+    Dim niveles As Variant
+    Dim ra As Variant
+    
+    profesores = UserForm1.i_profesores.Value
+    materias = UserForm1.j_materias.Value
+    niveles = UserForm1.k_niveles.Value
+    ra = UserForm1.l_RA.Value
+    
+    If profesores = "" Or materias = "" Or niveles = "" Or ra = "" Then
+        MsgBox Prompt:="¡Ingrese todos los valores correctamente!", Buttons:=vbCritical, Title:="Advertencia"
+    ElseIf niveles <> 3 Then
+        MsgBox Prompt:="Este programa solo puede trabajar con 3 niveles de carrera." & vbNewLine & "¡Ingrese de nuevo los valores!", Buttons:=vbCritical, Title:="Advertencia"
+    ElseIf materias <= profesores Then
+        MsgBox Prompt:="El número de materias debe ser mayor al número de profesores." & vbNewLine & "¡Ingrese de nuevo los valores!", Buttons:=vbCritical, Title:="Advertencia"
+    Else
+        Call PosicionesCeldas
+        Call CrearModelo1
+        Call AbrirModelo1
+        Call AbrirGAMS1
+        MsgBox Prompt:="Modelo 1:" & vbNewLine & vbNewLine & "Código GAMS creado en Word." & vbNewLine & vbNewLine & "Copie el código y peguelo en el archivo GAMS, luego ejecute (presione F9)." & vbNewLine & _
+        vbNewLine & "El archivo de resultados se creará automáticamente", Buttons:=vbInformation + vbOKOnly, Title:="Información"
+    End If
+    
+End Sub
+
+Private Sub btnGenerarModelo2_Click()
+
+    Dim profesores As Variant
+    Dim materias As Variant
+    Dim niveles As Variant
+    Dim ra As Variant
+    
+    profesores = UserForm1.i_profesores.Value
+    materias = UserForm1.j_materias.Value
+    niveles = UserForm1.k_niveles.Value
+    ra = UserForm1.l_RA.Value
+    
+    If profesores = "" Or materias = "" Or niveles = "" Or ra = "" Then
+        MsgBox Prompt:="¡Ingrese todos los valores correctamente!", Buttons:=vbCritical, Title:="Advertencia"
+    ElseIf niveles <> 3 Then
+        MsgBox Prompt:="Este programa solo puede trabajar con 3 niveles de carrera." & vbNewLine & "¡Ingrese de nuevo los valores!", Buttons:=vbCritical, Title:="Advertencia"
+    ElseIf materias <= profesores Then
+        MsgBox Prompt:="El número de materias debe ser mayor al número de profesores." & vbNewLine & "¡Ingrese de nuevo los valores!", Buttons:=vbCritical, Title:="Advertencia"
+    Else
+        Call ResultadoModelo1
+        Call AccesoResultadoModelo1
+        Call CrearModelo2
+        Call AbrirModelo2
+        Call AbrirGAMS2
+        MsgBox Prompt:="Modelo 2:" & vbNewLine & vbNewLine & "Código GAMS creado en Word." & vbNewLine & vbNewLine & "Copie el código y peguelo en el archivo GAMS, luego ejecute (presione F9)." & vbNewLine & _
+        vbNewLine & "El archivo de resultados se creará automáticamente", Buttons:=vbInformation + vbOKOnly, Title:="Información"
+    End If
+    
+End Sub
+
+
+Private Sub UserForm_Initialize()
+
+    Dim lngMyHandle As Long, lngCurrentStyle As Long, lngNewStyle As Long
+    If Application.Version < 9 Then
+        lngMyHandle = FindWindow("THUNDERXFRAME", Me.Caption)
+    Else
+        lngMyHandle = FindWindow("THUNDERDFRAME", Me.Caption)
+    End If
+    lngCurrentStyle = GetWindowLong(lngMyHandle, GWL_STYLE)
+    lngNewStyle = lngCurrentStyle Or WS_MINIMIZEBOX
+    SetWindowLong lngMyHandle, GWL_STYLE, lngNewStyle
+    
+End Sub
+
+Private Sub btnIngresarData_Click()
+
+    Dim profesores As Variant
+    Dim materias As Variant
+    Dim niveles As Variant
+    Dim ra As Variant
+    
+    profesores = UserForm1.i_profesores.Value
+    materias = UserForm1.j_materias.Value
+    niveles = UserForm1.k_niveles.Value
+    ra = UserForm1.l_RA.Value
+    
+    If profesores = "" Or materias = "" Or niveles = "" Or ra = "" Then
+        MsgBox Prompt:="¡Ingrese todos los valores correctamente!", Buttons:=vbCritical, Title:="Advertencia"
+    ElseIf niveles <> 3 Then
+        MsgBox Prompt:="Este programa solo puede trabajar con 3 niveles de carrera." & vbNewLine & "¡Ingrese de nuevo los valores!", Buttons:=vbCritical, Title:="Advertencia"
+    ElseIf materias <= profesores Then
+        MsgBox Prompt:="El número de materias debe ser mayor al número de profesores." & vbNewLine & "¡Ingrese de nuevo los valores!", Buttons:=vbCritical, Title:="Advertencia"
+    Else
+        Call BorrarGenerados
+        Call IngresoData
+        Call TablasGeneradas
+        MsgBox Prompt:="Tablas de ingreso de datos creadas exitosamente.", Buttons:=vbInformation + vbOKOnly, Title:="Información"
+    End If
+    
+End Sub
+
