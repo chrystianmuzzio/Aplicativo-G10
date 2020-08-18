@@ -1,0 +1,1382 @@
+Option Explicit
+
+Dim profesores As Long
+Dim niveles As Long
+Dim ra As Long
+Dim materias As Long
+Dim materias2 As Long
+
+Dim a_id As Long
+Dim b_id As Long
+Dim c_id As Long
+Dim d_id As Long
+Dim e_id As Long
+Dim f_id As Long
+Dim g_id As Long
+Dim h_id As Long
+Dim i_id As Long
+Dim j_id As Long
+Dim k_id As Long
+Dim l_id As Long
+Dim m_id As Long
+Dim n_id As Long
+Dim o_id As Long
+Dim p_id As Long
+
+Dim a_g As Long
+Dim b_g As Long
+Dim c_g As Long
+Dim d_g As Long
+Dim e_g As Long
+Dim f_g As Long
+Dim g_g As Long
+Dim h_g As Long
+Dim i_g As Long
+Dim j_g As Long
+Dim k_g As Long
+Dim l_g As Long
+Dim m_g As Long
+Dim n_g As Long
+Dim o_g As Long
+Dim p_g As Long
+Dim q_g As Long
+Dim r_g As Long
+Dim s_g As Long
+Dim t_g As Long
+Dim u_g As Long
+Dim v_g As Long
+Dim w_g As Long
+Dim x_g As Long
+
+Dim a_rm1 As Long
+Dim b_rm1 As Long
+
+Dim a_rm2 As Long
+Dim b_rm2 As Long
+
+Dim a_rf As Long
+Dim b_rf As Long
+Dim c_rf As Long
+Dim d_rf As Long
+Dim e_rf As Long
+Dim f_rf As Long
+Dim g_rf As Long
+Dim h_rf As Long
+
+Function LetraCol(NumCol As Long) As String
+
+    Dim Arreglo
+    Arreglo = Split(Cells(1, NumCol).Address(True, False), "$")
+    LetraCol = Arreglo(0)
+    
+End Function
+
+Sub FormulasIngresoData()
+
+    profesores = UserForm1.i_profesores.Value
+    niveles = UserForm1.k_niveles.Value
+    ra = UserForm1.l_RA.Value
+    materias = UserForm1.j_materias.Value
+    materias2 = ra * niveles
+    
+    a_id = 6 + profesores
+    b_id = a_id + 2
+    c_id = b_id + 2
+    d_id = c_id + ra
+    e_id = d_id + 2
+    f_id = e_id + 2
+    g_id = f_id + niveles
+    h_id = g_id + 2
+    i_id = h_id + 2
+    j_id = i_id + materias
+    k_id = j_id + 2
+    l_id = k_id + 2
+    m_id = l_id + profesores
+    n_id = m_id + 2
+    o_id = n_id + 2
+    p_id = o_id + materias
+    
+    a_g = 6 + profesores
+    b_g = a_g + 2
+    c_g = b_g + 2
+    d_g = c_g + niveles
+    e_g = d_g + 2
+    f_g = e_g + 2
+    g_g = f_g + materias
+    h_g = g_g + 2
+    i_g = h_g + 2
+    j_g = i_g + materias
+    k_g = j_g + 2
+    l_g = k_g + 2
+    m_g = l_g + materias
+    n_g = m_g + 2
+    o_g = n_g + 2
+    p_g = o_g + materias
+    q_g = p_g + 2
+    r_g = q_g + 2
+    s_g = r_g + 2
+    t_g = s_g + 2
+    u_g = t_g + materias2
+    v_g = u_g + 2
+    w_g = v_g + 2
+    x_g = w_g + materias2
+    
+    a_rm1 = 3 + materias2
+    b_rm1 = a_rm1 + materias2
+    
+    a_rm2 = 3 + materias2
+    b_rm2 = a_rm2 + materias2
+    
+    a_rf = 4 + ra
+    b_rf = a_rf + 2
+    c_rf = b_rf + 1
+    d_rf = c_rf + 1
+    e_rf = d_rf + materias2
+    f_rf = e_rf + 2
+    g_rf = f_rf + 2
+    h_rf = g_rf + profesores
+    
+    Application.ScreenUpdating = False
+    Sheets("INGRESO_DATA").Select
+    Range("F" & VBA.CStr(i_id + 1) & ":F" & VBA.CStr(j_id + 1)).Select
+    With Selection.Validation
+        .Delete
+        .Add Type:=xlValidateList, AlertStyle:=xlValidAlertStop, Operator:= _
+        xlBetween, Formula1:="=$C$7:$C$" & VBA.CStr(a_id)
+        .IgnoreBlank = True
+        .InCellDropdown = True
+        .InputTitle = ""
+        .ErrorTitle = ""
+        .InputMessage = ""
+        .ErrorMessage = ""
+        .ShowInput = True
+        .ShowError = True
+    End With
+    Range("H" & VBA.CStr(i_id + 1) & ":H" & VBA.CStr(j_id + 1)).Select
+    With Selection.Validation
+        .Delete
+        .Add Type:=xlValidateList, AlertStyle:=xlValidAlertStop, Operator:= _
+        xlBetween, Formula1:="=$C$35:$C$37"
+        .IgnoreBlank = True
+        .InCellDropdown = True
+        .InputTitle = ""
+        .ErrorTitle = ""
+        .InputMessage = ""
+        .ErrorMessage = ""
+        .ShowInput = True
+        .ShowError = True
+    End With
+    Range("G" & VBA.CStr(i_id + 1)).Select
+    ActiveCell.FormulaR1C1 = _
+        "=+VLOOKUP(RC[-1],CHOOSE({2,1},R7C2:R" & VBA.CStr(a_id) & "C2,R7C3:R" & VBA.CStr(a_id) & "C3),2,FALSE)"
+    Range("G" & VBA.CStr(i_id + 1)).Select
+    Selection.AutoFill Destination:=Range("G" & VBA.CStr(i_id + 1) & ":G" & VBA.CStr(j_id))
+    Range("G" & VBA.CStr(i_id + 1) & ":G" & VBA.CStr(j_id)).Select
+    Range("I" & VBA.CStr(i_id + 1)).Select
+    ActiveCell.FormulaR1C1 = _
+        "=+VLOOKUP(RC[-1],CHOOSE({2,1},R" & VBA.CStr(f_id + 1) & "C2:R" & VBA.CStr(g_id) & "C2,R" & VBA.CStr(f_id + 1) & "C3:R" & VBA.CStr(g_id) & "C3),2,FALSE)"
+    Range("I" & VBA.CStr(i_id + 1)).Select
+    Selection.AutoFill Destination:=Range("I" & VBA.CStr(i_id + 1) & ":I" & VBA.CStr(j_id))
+    Range("I" & VBA.CStr(i_id + 1) & ":I" & VBA.CStr(j_id)).Select
+    Range("E" & VBA.CStr(i_id + 1) & ":E" & VBA.CStr(j_id)).Select
+    Selection.Copy
+    Range("G" & VBA.CStr(i_id + 1)).Select
+    Selection.PasteSpecial Paste:=xlPasteFormats, Operation:=xlNone, _
+        SkipBlanks:=False, Transpose:=False
+    Application.CutCopyMode = False
+    Selection.Copy
+    Range("I" & VBA.CStr(i_id + 1)).Select
+    Selection.PasteSpecial Paste:=xlPasteFormats, Operation:=xlNone, _
+        SkipBlanks:=False, Transpose:=False
+    Application.CutCopyMode = False
+    Application.GoTo Range("B2"), True
+    Application.ScreenUpdating = True
+    
+End Sub
+
+Sub FormulasTablasGeneradas1()
+    
+    profesores = UserForm1.i_profesores.Value
+    niveles = UserForm1.k_niveles.Value
+    ra = UserForm1.l_RA.Value
+    materias = UserForm1.j_materias.Value
+    materias2 = ra * niveles
+    
+    a_id = 6 + profesores
+    b_id = a_id + 2
+    c_id = b_id + 2
+    d_id = c_id + ra
+    e_id = d_id + 2
+    f_id = e_id + 2
+    g_id = f_id + niveles
+    h_id = g_id + 2
+    i_id = h_id + 2
+    j_id = i_id + materias
+    k_id = j_id + 2
+    l_id = k_id + 2
+    m_id = l_id + profesores
+    n_id = m_id + 2
+    o_id = n_id + 2
+    p_id = o_id + materias
+    
+    a_g = 6 + profesores
+    b_g = a_g + 2
+    c_g = b_g + 2
+    d_g = c_g + niveles
+    e_g = d_g + 2
+    f_g = e_g + 2
+    g_g = f_g + materias
+    h_g = g_g + 2
+    i_g = h_g + 2
+    j_g = i_g + materias
+    k_g = j_g + 2
+    l_g = k_g + 2
+    m_g = l_g + materias
+    n_g = m_g + 2
+    o_g = n_g + 2
+    p_g = o_g + materias
+    q_g = p_g + 2
+    r_g = q_g + 2
+    s_g = r_g + 2
+    t_g = s_g + 2
+    u_g = t_g + materias2
+    v_g = u_g + 2
+    w_g = v_g + 2
+    x_g = w_g + materias2
+    
+    a_rm1 = 3 + materias2
+    b_rm1 = a_rm1 + materias2
+    
+    a_rm2 = 3 + materias2
+    b_rm2 = a_rm2 + materias2
+    
+    a_rf = 4 + ra
+    b_rf = a_rf + 2
+    c_rf = b_rf + 1
+    d_rf = c_rf + 1
+    e_rf = d_rf + materias2
+    f_rf = e_rf + 2
+    g_rf = f_rf + 2
+    h_rf = g_rf + profesores
+    
+    Application.ScreenUpdating = False
+    Sheets("GENERADOS").Select
+    Range("C7").Select
+    ActiveCell.FormulaR1C1 = "=+INGRESO_DATA!RC"
+    Range("D7").Select
+    ActiveCell.FormulaR1C1 = "=+COUNTIF(INGRESO_DATA!R" & VBA.CStr(i_id + 1) & "C6:R" & VBA.CStr(j_id + 1) & "C6,GENERADOS!RC[-1])"
+    Range("C7").Select
+    Selection.AutoFill Destination:=Range("C7:C" & VBA.CStr(a_g))
+    Range("C7:C" & VBA.CStr(a_g)).Select
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    Range("D7").Select
+    Selection.AutoFill Destination:=Range("D7:D" & VBA.CStr(a_g))
+    Range("C7:D" & VBA.CStr(a_g)).Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Range("C" & VBA.CStr(c_g + 1)).Select
+    ActiveCell.FormulaR1C1 = "=+INGRESO_DATA!R[" & VBA.CStr((f_id + 1) - (c_g + 1)) & "]C"
+    Range("D" & VBA.CStr(c_g + 1)).Select
+    ActiveCell.FormulaR1C1 = "=+COUNTIF(INGRESO_DATA!R" & VBA.CStr(i_id + 1) & "C8:R" & VBA.CStr(j_id + 1) & "C8,GENERADOS!RC[-1])"
+    Range("C" & VBA.CStr(c_g + 1)).Select
+    Selection.AutoFill Destination:=Range("C" & VBA.CStr(c_g + 1) & ":C" & VBA.CStr(d_g))
+    Range("C" & VBA.CStr(c_g + 1) & ":C" & VBA.CStr(d_g)).Select
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    Range("D" & VBA.CStr(c_g + 1)).Select
+    Selection.AutoFill Destination:=Range("D" & VBA.CStr(c_g + 1) & ":D" & VBA.CStr(d_g))
+    Range("D" & VBA.CStr(c_g + 1) & ":D" & VBA.CStr(d_g)).Select
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    Range("C" & VBA.CStr(f_g + 1)).Select
+    ActiveCell.FormulaR1C1 = _
+        "=+IF(VLOOKUP(RC[-1],INGRESO_DATA!R" & VBA.CStr(i_id) & "C2:R" & VBA.CStr(j_id) & "C9,7,FALSE)=GENERADOS!R" & VBA.CStr(c_g + 1) & "C3,(1/R" & VBA.CStr(c_g + 1) & "C4)/VLOOKUP((VLOOKUP(RC[-1],INGRESO_DATA!R" & VBA.CStr(i_id) & "C2:R" & VBA.CStr(j_id) & "C9,5,FALSE)),GENERADOS!R7C3:R" & VBA.CStr(a_g) & "C4,2,FALSE),IF(VLOOKUP(RC[-1],INGRESO_DATA!R" & VBA.CStr(i_id) & "C2:R" & VBA.CStr(j_id) & "C9,7,FALSE)=GENERADOS!R" & VBA.CStr(c_g + 2) & "C3,(1/R" & VBA.CStr(c_g + 2) & "C4)/VLOOKUP((VLOOKUP(RC[-1],INGRESO_DATA!R" & VBA.CStr(i_id) & "C2:R" & VBA.CStr(j_id) & "C9,5,FALSE)),GENERADOS!R7C3:R" & VBA.CStr(a_g) & "C4,2,FALSE),(1/R" & VBA.CStr(d_g) & "C4)/VLOOKUP(" & _
+        "(VLOOKUP(RC[-1],INGRESO_DATA!R" & VBA.CStr(i_id) & "C2:R" & VBA.CStr(j_id) & "C9,5,FALSE)),GENERADOS!R7C3:R" & VBA.CStr(a_g) & "C4,2,FALSE)))" & _
+        ""
+    Range("C" & VBA.CStr(f_g + 1)).Select
+    Selection.AutoFill Destination:=Range("C" & VBA.CStr(f_g + 1) & ":C" & VBA.CStr(g_g))
+    Range("C" & VBA.CStr(f_g + 1) & ":C" & VBA.CStr(g_g)).Select
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    Range("C" & VBA.CStr(i_g + 1)).Select
+    ActiveCell.FormulaR1C1 = "1"
+    Range("C" & VBA.CStr(i_g + 2)).Select
+    ActiveCell.FormulaR1C1 = "1"
+    Range("C" & VBA.CStr(i_g + 1) & ":C" & VBA.CStr(i_g + 2)).Select
+    Selection.AutoFill Destination:=Range("C" & VBA.CStr(i_g + 1) & ":C" & VBA.CStr(j_g)), Type:=xlFillDefault
+    Range("C" & VBA.CStr(i_g + 1) & ":C" & VBA.CStr(j_g)).Select
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    Range("C" & VBA.CStr(l_g + 1)).Select
+    ActiveCell.FormulaR1C1 = _
+        "=+IF(VLOOKUP(RC2,INGRESO_DATA!R" & VBA.CStr(i_id) & "C2:R" & VBA.CStr(j_id) & "C9,6,FALSE)=GENERADOS!R" & VBA.CStr(l_g) & "C,1,0)"
+    Range("C" & VBA.CStr(l_g + 1)).Select
+    Selection.AutoFill Destination:=Range("C" & VBA.CStr(l_g + 1) & ":" & LetraCol(profesores + 2) & VBA.CStr(l_g + 1)), Type:=xlFillDefault
+    Range("C" & VBA.CStr(l_g + 1) & ":" & LetraCol(profesores + 2) & VBA.CStr(l_g + 1)).Select
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    Selection.AutoFill Destination:=Range("C" & VBA.CStr(l_g + 1) & ":" & LetraCol(profesores + 2) & VBA.CStr(m_g)), Type:=xlFillDefault
+    Range("C" & VBA.CStr(l_g + 1) & ":" & LetraCol(profesores + 2) & VBA.CStr(m_g)).Select
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    Range("C" & VBA.CStr(o_g + 1)).Select
+    ActiveCell.FormulaR1C1 = _
+        "=+IF(VLOOKUP(RC2,INGRESO_DATA!R" & VBA.CStr(i_id) & "C2:R" & VBA.CStr(j_id) & "C9,8,FALSE)=GENERADOS!R" & VBA.CStr(o_g) & "C,1,0)"
+    Range("C" & VBA.CStr(o_g + 1)).Select
+    Selection.AutoFill Destination:=Range("C" & VBA.CStr(o_g + 1) & ":" & LetraCol(niveles + 2) & VBA.CStr(o_g + 1)), Type:=xlFillDefault
+    Range("C" & VBA.CStr(o_g + 1) & ":" & LetraCol(niveles + 2) & VBA.CStr(o_g + 1)).Select
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    Selection.AutoFill Destination:=Range("C" & VBA.CStr(o_g + 1) & ":E" & VBA.CStr(p_g)), Type:=xlFillDefault
+    Range("C" & VBA.CStr(o_g + 1) & ":E" & VBA.CStr(p_g)).Select
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    
+    Range(LetraCol(niveles + 2) & VBA.CStr(q_g)).Select
+    ActiveCell.FormulaR1C1 = _
+        "=+ROUNDUP(COUNT(INGRESO_DATA!R" & VBA.CStr(i_id + 1) & "C2:R" & VBA.CStr(j_id) & "C2)/COUNT(INGRESO_DATA!R7C2:R" & VBA.CStr(a_id) & "C2),0)"
+    
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Range("C" & VBA.CStr(o_g + 1) & ":" & LetraCol(niveles + 2) & VBA.CStr(p_g)).Select
+    Range(LetraCol(niveles + 2) & VBA.CStr(p_g)).Activate
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Range("C" & VBA.CStr(l_g + 1) & ":N" & VBA.CStr(m_g)).Select
+    Range("N" & VBA.CStr(m_g)).Activate
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Range("C" & VBA.CStr(i_g + 1) & ":C" & VBA.CStr(j_g)).Select
+    Range("C" & VBA.CStr(j_g)).Activate
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    Selection.Borders(xlInsideVertical).LineStyle = xlNone
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Range("C" & VBA.CStr(f_g + 1) & ":C" & VBA.CStr(g_g)).Select
+    Range("C" & VBA.CStr(g_g)).Activate
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    Selection.Borders(xlInsideVertical).LineStyle = xlNone
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Range("C" & VBA.CStr(c_g + 1) & ":D" & VBA.CStr(d_g)).Select
+    Range("D" & VBA.CStr(d_g)).Activate
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Range("C7:D" & VBA.CStr(a_g)).Select
+    Range("D" & VBA.CStr(a_g)).Activate
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Range("C" & VBA.CStr(f_g + 1) & ":C" & VBA.CStr(g_g)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Range("C" & VBA.CStr(p_g) & ":" & LetraCol(niveles + 2) & VBA.CStr(p_g)).Select
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ThemeColor = 2
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    Sheets("INGRESO_DATA").Select
+    Range("B2").Select
+    Application.ScreenUpdating = True
+    
+End Sub
+
+Sub FormulasTablasGeneradas2()
+
+    'Luego de obtener los resultados del modelo 1
+    
+    profesores = UserForm1.i_profesores.Value
+    niveles = UserForm1.k_niveles.Value
+    ra = UserForm1.l_RA.Value
+    materias = UserForm1.j_materias.Value
+    materias2 = ra * niveles
+    
+    a_id = 6 + profesores
+    b_id = a_id + 2
+    c_id = b_id + 2
+    d_id = c_id + ra
+    e_id = d_id + 2
+    f_id = e_id + 2
+    g_id = f_id + niveles
+    h_id = g_id + 2
+    i_id = h_id + 2
+    j_id = i_id + materias
+    k_id = j_id + 2
+    l_id = k_id + 2
+    m_id = l_id + profesores
+    n_id = m_id + 2
+    o_id = n_id + 2
+    p_id = o_id + materias
+    
+    a_g = 6 + profesores
+    b_g = a_g + 2
+    c_g = b_g + 2
+    d_g = c_g + niveles
+    e_g = d_g + 2
+    f_g = e_g + 2
+    g_g = f_g + materias
+    h_g = g_g + 2
+    i_g = h_g + 2
+    j_g = i_g + materias
+    k_g = j_g + 2
+    l_g = k_g + 2
+    m_g = l_g + materias
+    n_g = m_g + 2
+    o_g = n_g + 2
+    p_g = o_g + materias
+    q_g = p_g + 2
+    r_g = q_g + 2
+    s_g = r_g + 2
+    t_g = s_g + 2
+    u_g = t_g + materias2
+    v_g = u_g + 2
+    w_g = v_g + 2
+    x_g = w_g + materias2
+    
+    a_rm1 = 3 + materias2
+    b_rm1 = a_rm1 + materias2
+    
+    a_rm2 = 3 + materias2
+    b_rm2 = a_rm2 + materias2
+    
+    a_rf = 4 + ra
+    b_rf = a_rf + 2
+    c_rf = b_rf + 1
+    d_rf = c_rf + 1
+    e_rf = d_rf + materias2
+    f_rf = e_rf + 2
+    g_rf = f_rf + 2
+    h_rf = g_rf + profesores
+    
+    Application.ScreenUpdating = False
+    Sheets("GENERADOS").Select
+    Range("C" & VBA.CStr(t_g + 1)).Select
+    ActiveCell.FormulaR1C1 = _
+        "=+VLOOKUP(INT(VLOOKUP(INT(VLOOKUP(GENERADOS!RC2,RESULTADO_MODELO1!R" & VBA.CStr(a_rm1) & "C1:R" & VBA.CStr(b_rm1) & "C6,2,FALSE)),INGRESO_DATA!R" & VBA.CStr(i_id) & "C2:R" & VBA.CStr(j_id) & "C9,6,FALSE)),INGRESO_DATA!R" & VBA.CStr(l_id) & "C2:R" & VBA.CStr(m_id) & "C" & VBA.CStr(ra + 2) & ",1+R" & VBA.CStr(t_g) & "C,FALSE)"
+    Range("C" & VBA.CStr(t_g + 1)).Select
+    Selection.AutoFill Destination:=Range("C" & VBA.CStr(t_g + 1) & ":" & LetraCol(ra + 2) & VBA.CStr(t_g + 1)), Type:=xlFillDefault
+    Range("C" & VBA.CStr(t_g + 1) & ":" & LetraCol(ra + 2) & VBA.CStr(t_g + 1)).Select
+    Selection.AutoFill Destination:=Range("C" & VBA.CStr(t_g + 1) & ":" & LetraCol(ra + 2) & VBA.CStr(u_g)), Type:=xlFillDefault
+    Range("C" & VBA.CStr(t_g + 1) & ":" & LetraCol(ra + 2) & VBA.CStr(u_g)).Select
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Range("C" & VBA.CStr(w_g + 1)).Select
+    ActiveCell.FormulaR1C1 = _
+        "=+VLOOKUP(INT(VLOOKUP(RC2,RESULTADO_MODELO1!R" & VBA.CStr(a_rm1) & "C1:R" & VBA.CStr(b_rm1) & "C6,2,FALSE)),INGRESO_DATA!R" & VBA.CStr(o_id) & "C2:R" & VBA.CStr(p_id) & "C" & VBA.CStr(ra + 2) & ",1+R" & VBA.CStr(w_g) & "C,FALSE)"
+    Range("C" & VBA.CStr(w_g + 1)).Select
+    Selection.AutoFill Destination:=Range("C" & VBA.CStr(w_g + 1) & ":" & LetraCol(ra + 2) & VBA.CStr(w_g + 1)), Type:=xlFillDefault
+    Range("C" & VBA.CStr(w_g + 1) & ":" & LetraCol(ra + 2) & VBA.CStr(w_g + 1)).Select
+    Selection.AutoFill Destination:=Range("C" & VBA.CStr(w_g + 1) & ":" & LetraCol(ra + 2) & VBA.CStr(x_g)), Type:=xlFillDefault
+    Range("C" & VBA.CStr(w_g + 1) & ":" & LetraCol(ra + 2) & VBA.CStr(x_g)).Select
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+        .ColorIndex = xlAutomatic
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Range("C" & VBA.CStr(t_g + 1) & ":" & LetraCol(ra + 2) & VBA.CStr(u_g)).Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+        .ColorIndex = xlAutomatic
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    
+    Range("C" & VBA.CStr(u_g) & ":" & LetraCol(ra + 2) & VBA.CStr(u_g)).Select
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    Range("C" & VBA.CStr(x_g) & ":" & LetraCol(ra + 2) & VBA.CStr(x_g)).Select
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    
+    Application.GoTo Range("B2"), True
+    Application.ScreenUpdating = True
+    
+End Sub
+
+Sub FormulasPosicionesCeldas()
+    
+    profesores = UserForm1.i_profesores.Value
+    niveles = UserForm1.k_niveles.Value
+    ra = UserForm1.l_RA.Value
+    materias = UserForm1.j_materias.Value
+    materias2 = ra * niveles
+    
+    a_id = 6 + profesores
+    b_id = a_id + 2
+    c_id = b_id + 2
+    d_id = c_id + ra
+    e_id = d_id + 2
+    f_id = e_id + 2
+    g_id = f_id + niveles
+    h_id = g_id + 2
+    i_id = h_id + 2
+    j_id = i_id + materias
+    k_id = j_id + 2
+    l_id = k_id + 2
+    m_id = l_id + profesores
+    n_id = m_id + 2
+    o_id = n_id + 2
+    p_id = o_id + materias
+    
+    a_g = 6 + profesores
+    b_g = a_g + 2
+    c_g = b_g + 2
+    d_g = c_g + niveles
+    e_g = d_g + 2
+    f_g = e_g + 2
+    g_g = f_g + materias
+    h_g = g_g + 2
+    i_g = h_g + 2
+    j_g = i_g + materias
+    k_g = j_g + 2
+    l_g = k_g + 2
+    m_g = l_g + materias
+    n_g = m_g + 2
+    o_g = n_g + 2
+    p_g = o_g + materias
+    q_g = p_g + 2
+    r_g = q_g + 2
+    s_g = r_g + 2
+    t_g = s_g + 2
+    u_g = t_g + materias2
+    v_g = u_g + 2
+    w_g = v_g + 2
+    x_g = w_g + materias2
+    
+    a_rm1 = 3 + materias2
+    b_rm1 = a_rm1 + materias2
+    
+    a_rm2 = 3 + materias2
+    b_rm2 = a_rm2 + materias2
+    
+    a_rf = 4 + ra
+    b_rf = a_rf + 2
+    c_rf = b_rf + 1
+    d_rf = c_rf + 1
+    e_rf = d_rf + materias2
+    f_rf = e_rf + 2
+    g_rf = f_rf + 2
+    h_rf = g_rf + profesores
+    
+    Application.ScreenUpdating = False
+    Sheets("POSICIONES_CELDAS").Select
+    Range("C6").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(f_g + 1) & ",2,4)"
+    Range("D6").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(g_g) & ",2,4)"
+    Range("C7").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(7,2,4)"
+    Range("D7").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(a_g) & ",2,4)"
+    Range("C8").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(c_g + 1) & ",2,4)"
+    Range("D8").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(d_g) & ",2,4)"
+    Range("C9").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(f_g + 1) & ",2,4)"
+    Range("D9").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(g_g) & ",3,4)"
+    Range("C10").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(i_g + 1) & ",2,4)"
+    Range("D10").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(j_g) & ",3,4)"
+    Range("C11").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(l_g) & ",2,4)"
+    Range("D11").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(m_g) & "," & VBA.CStr(profesores + 2) & ",4)"
+    Range("C12").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(o_g) & ",2,4)"
+    Range("D12").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(p_g) & "," & VBA.CStr(niveles + 2) & ",4)"
+    Range("C13").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(q_g) & "," & VBA.CStr(niveles + 2) & ",4)"
+    Range("C15").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(i_id + 1) & ",2,4)"
+    Range("D15").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(i_id + materias2) & ",2,4)"
+    Range("C16").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(c_id + 1) & ",2,4)"
+    Range("D16").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(d_id) & ",2,4)"
+    Range("C17").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(i_id + 1) & ",2,4)"
+    Range("D17").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(i_id + ra) & ",2,4)"
+    Range("C18").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(i_id + (ra + 1)) & ",2,4)"
+    Range("D18").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(i_id + (2 * ra)) & ",2,4)"
+    Range("C19").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(i_id + (2 * ra + 1)) & ",2,4)"
+    Range("D19").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(i_id + (3 * ra)) & ",2,4)"
+    Range("C20").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(t_g) & ",2,4)"
+    Range("D20").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(u_g) & "," & VBA.CStr(ra + 2) & ",4)"
+    Range("C21").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(w_g) & ",2,4)"
+    Range("D21").Select
+    ActiveCell.FormulaR1C1 = "=+ADDRESS(" & VBA.CStr(x_g) & "," & VBA.CStr(ra + 2) & ",4)"
+    Range("E6").Select
+    Application.CutCopyMode = False
+    ActiveCell.FormulaR1C1 = "=+RC[-2] & "":"" & RC[-1]"
+    Range("E6").Select
+    Selection.AutoFill Destination:=Range("E6:E13")
+    Range("E6:E13").Select
+    Range("E15").Select
+    Application.CutCopyMode = False
+    ActiveCell.FormulaR1C1 = "=+RC[-2] & "":"" & RC[-1]"
+    Range("E15").Select
+    Selection.AutoFill Destination:=Range("E15:E21")
+    Range("E15:E21").Select
+    Range("D6:D21").Select
+    Selection.Copy
+    Range("E6").Select
+    Selection.PasteSpecial Paste:=xlPasteFormats, Operation:=xlNone, _
+        SkipBlanks:=False, Transpose:=False
+    Application.CutCopyMode = False
+    Range("D23").Select
+    ActiveCell.FormulaR1C1 = _
+        "=+ROUNDUP(COUNT(INGRESO_DATA!R" & VBA.CStr(i_id + 1) & "C2:R" & VBA.CStr(j_id) & "C2)/COUNT(INGRESO_DATA!R7C2:R" & VBA.CStr(a_id) & "C2),0)"
+    Range("D24").Select
+    ActiveCell.FormulaR1C1 = "=+ROUNDUP(COUNT(INGRESO_DATA!R" & VBA.CStr(c_id + 1) & "C2:R" & VBA.CStr(d_id) & "C2),0)"
+    Range("D25").Select
+    ActiveCell.FormulaR1C1 = "=+""/1*"" & R[-1]C & ""/"""
+    Range("D26").Select
+    ActiveCell.FormulaR1C1 = "=+""/"" & (R[-2]C+1) & ""*"" & (R[-2]C*2) & ""/"""
+    Range("D27").Select
+    ActiveCell.FormulaR1C1 = _
+        "=+""/"" & ((R[-3]C*2)+1) & ""*"" & (R[-3]C*3) & ""/"""
+    Range("D28").Select
+    Columns("C:C").ColumnWidth = 27.22
+    Range("E13").Select
+    ActiveCell.FormulaR1C1 = "=+RC[-2]"
+    Range("E14").Select
+    Application.GoTo Range("B2"), True
+    ActiveWorkbook.Save
+    Application.ScreenUpdating = True
+    
+End Sub
+
+Sub FormulasResultadoModelo1()
+    
+    profesores = UserForm1.i_profesores.Value
+    niveles = UserForm1.k_niveles.Value
+    ra = UserForm1.l_RA.Value
+    materias = UserForm1.j_materias.Value
+    materias2 = ra * niveles
+    
+    a_id = 6 + profesores
+    b_id = a_id + 2
+    c_id = b_id + 2
+    d_id = c_id + ra
+    e_id = d_id + 2
+    f_id = e_id + 2
+    g_id = f_id + niveles
+    h_id = g_id + 2
+    i_id = h_id + 2
+    j_id = i_id + materias
+    k_id = j_id + 2
+    l_id = k_id + 2
+    m_id = l_id + profesores
+    n_id = m_id + 2
+    o_id = n_id + 2
+    p_id = o_id + materias
+    
+    a_g = 6 + profesores
+    b_g = a_g + 2
+    c_g = b_g + 2
+    d_g = c_g + niveles
+    e_g = d_g + 2
+    f_g = e_g + 2
+    g_g = f_g + materias
+    h_g = g_g + 2
+    i_g = h_g + 2
+    j_g = i_g + materias
+    k_g = j_g + 2
+    l_g = k_g + 2
+    m_g = l_g + materias
+    n_g = m_g + 2
+    o_g = n_g + 2
+    p_g = o_g + materias
+    q_g = p_g + 2
+    r_g = q_g + 2
+    s_g = r_g + 2
+    t_g = s_g + 2
+    u_g = t_g + materias2
+    v_g = u_g + 2
+    w_g = v_g + 2
+    x_g = w_g + materias2
+    
+    a_rm1 = 3 + materias2
+    b_rm1 = a_rm1 + materias2
+    
+    a_rm2 = 3 + materias2
+    b_rm2 = a_rm2 + materias2
+    
+    a_rf = 4 + ra
+    b_rf = a_rf + 2
+    c_rf = b_rf + 1
+    d_rf = c_rf + 1
+    e_rf = d_rf + materias2
+    f_rf = e_rf + 2
+    g_rf = f_rf + 2
+    h_rf = g_rf + profesores
+    
+    Application.ScreenUpdating = False
+    Sheets("RESULTADO_MODELO1").Select
+    Range("A2:A" & VBA.CStr(materias2 + 1)).Select
+    Selection.Copy
+    Range("B" & VBA.CStr(a_rm1 + 1)).Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+    Range("C" & VBA.CStr(a_rm1 + 1)).Select
+    Application.CutCopyMode = False
+    ActiveCell.FormulaR1C1 = "=+VLOOKUP(INT(RC2),INGRESO_DATA!R" & VBA.CStr(i_id + 1) & "C2:R" & VBA.CStr(j_id) & "C6,2,FALSE)"
+    Range("D" & VBA.CStr(a_rm1 + 1)).Select
+    ActiveCell.FormulaR1C1 = "=+VLOOKUP(INT(RC2),INGRESO_DATA!R" & VBA.CStr(i_id + 1) & "C2:R" & VBA.CStr(j_id) & "C6,3,FALSE)"
+    Range("E" & VBA.CStr(a_rm1 + 1)).Select
+    ActiveCell.FormulaR1C1 = "=+VLOOKUP(INT(RC2),INGRESO_DATA!R" & VBA.CStr(i_id + 1) & "C2:R" & VBA.CStr(j_id) & "C6,4,FALSE)"
+    Range("F" & VBA.CStr(a_rm1 + 1)).Select
+    ActiveCell.FormulaR1C1 = "=+VLOOKUP(INT(RC2),INGRESO_DATA!R" & VBA.CStr(i_id + 1) & "C2:R" & VBA.CStr(j_id) & "C6,5,FALSE)"
+    Range("C" & VBA.CStr(a_rm1 + 1) & ":F" & VBA.CStr(a_rm1 + 1)).Select
+    Selection.AutoFill Destination:=Range("C" & VBA.CStr(a_rm1 + 1) & ":F" & VBA.CStr(b_rm1)), Type:=xlFillDefault
+    Range("C" & VBA.CStr(a_rm1 + 1) & ":F" & VBA.CStr(b_rm1)).Select
+    Range("B" & VBA.CStr(a_rm1 + 1) & ":B" & VBA.CStr(b_rm1)).Select
+    Selection.Copy
+    Range("C" & VBA.CStr(a_rm1 + 1) & ":F" & VBA.CStr(b_rm1)).Select
+    Selection.PasteSpecial Paste:=xlPasteFormats, Operation:=xlNone, _
+        SkipBlanks:=False, Transpose:=False
+    Application.CutCopyMode = False
+    Application.GoTo Range("A1"), True
+    Application.ScreenUpdating = True
+    
+End Sub
+
+Sub FormulasResultadoModelo2()
+
+    profesores = UserForm1.i_profesores.Value
+    niveles = UserForm1.k_niveles.Value
+    ra = UserForm1.l_RA.Value
+    materias = UserForm1.j_materias.Value
+    materias2 = ra * niveles
+    
+    a_id = 6 + profesores
+    b_id = a_id + 2
+    c_id = b_id + 2
+    d_id = c_id + ra
+    e_id = d_id + 2
+    f_id = e_id + 2
+    g_id = f_id + niveles
+    h_id = g_id + 2
+    i_id = h_id + 2
+    j_id = i_id + materias
+    k_id = j_id + 2
+    l_id = k_id + 2
+    m_id = l_id + profesores
+    n_id = m_id + 2
+    o_id = n_id + 2
+    p_id = o_id + materias
+    
+    a_g = 6 + profesores
+    b_g = a_g + 2
+    c_g = b_g + 2
+    d_g = c_g + niveles
+    e_g = d_g + 2
+    f_g = e_g + 2
+    g_g = f_g + materias
+    h_g = g_g + 2
+    i_g = h_g + 2
+    j_g = i_g + materias
+    k_g = j_g + 2
+    l_g = k_g + 2
+    m_g = l_g + materias
+    n_g = m_g + 2
+    o_g = n_g + 2
+    p_g = o_g + materias
+    q_g = p_g + 2
+    r_g = q_g + 2
+    s_g = r_g + 2
+    t_g = s_g + 2
+    u_g = t_g + materias2
+    v_g = u_g + 2
+    w_g = v_g + 2
+    x_g = w_g + materias2
+    
+    a_rm1 = 3 + materias2
+    b_rm1 = a_rm1 + materias2
+    
+    a_rm2 = 3 + materias2
+    b_rm2 = a_rm2 + materias2
+    
+    a_rf = 4 + ra
+    b_rf = a_rf + 2
+    c_rf = b_rf + 1
+    d_rf = c_rf + 1
+    e_rf = d_rf + materias2
+    f_rf = e_rf + 2
+    g_rf = f_rf + 2
+    h_rf = g_rf + profesores
+    
+    Application.ScreenUpdating = False
+    Range("C" & VBA.CStr(a_rm2 + 1)).Select
+    Application.CutCopyMode = False
+    ActiveCell.FormulaR1C1 = "=+VLOOKUP(INT(RC2),INGRESO_DATA!R" & VBA.CStr(i_id + 1) & "C2:R" & VBA.CStr(j_id) & "C6,2,FALSE)"
+    Range("D" & VBA.CStr(a_rm2 + 1)).Select
+    ActiveCell.FormulaR1C1 = "=+VLOOKUP(INT(RC2),INGRESO_DATA!R" & VBA.CStr(i_id + 1) & "C2:R" & VBA.CStr(j_id) & "C6,3,FALSE)"
+    Range("E" & VBA.CStr(a_rm2 + 1)).Select
+    ActiveCell.FormulaR1C1 = "=+VLOOKUP(INT(RC2),INGRESO_DATA!R" & VBA.CStr(i_id + 1) & "C2:R" & VBA.CStr(j_id) & "C6,4,FALSE)"
+    Range("F" & VBA.CStr(a_rm2 + 1)).Select
+    ActiveCell.FormulaR1C1 = "=+VLOOKUP(INT(RC2),INGRESO_DATA!R" & VBA.CStr(i_id + 1) & "C2:R" & VBA.CStr(j_id) & "C6,5,FALSE)"
+    Range("C" & VBA.CStr(a_rm2 + 1) & ":F" & VBA.CStr(a_rm2 + 1)).Select
+    Selection.AutoFill Destination:=Range("C" & VBA.CStr(a_rm2 + 1) & ":F" & VBA.CStr(b_rm2)), Type:=xlFillDefault
+    Range("C" & VBA.CStr(a_rm2 + 1) & ":F" & VBA.CStr(b_rm2)).Select
+    Range("B" & VBA.CStr(a_rm2 + 1) & ":B" & VBA.CStr(b_rm2)).Select
+    Selection.Copy
+    Range("C" & VBA.CStr(a_rm2 + 1) & ":F" & VBA.CStr(b_rm2)).Select
+    Selection.PasteSpecial Paste:=xlPasteFormats, Operation:=xlNone, _
+        SkipBlanks:=False, Transpose:=False
+    Application.CutCopyMode = False
+    Application.GoTo Range("A1"), True
+    Application.ScreenUpdating = True
+    
+End Sub
+
+Sub FormulasReporteFinal()
+    
+    profesores = UserForm1.i_profesores.Value
+    niveles = UserForm1.k_niveles.Value
+    ra = UserForm1.l_RA.Value
+    materias = UserForm1.j_materias.Value
+    materias2 = ra * niveles
+    
+    a_id = 6 + profesores
+    b_id = a_id + 2
+    c_id = b_id + 2
+    d_id = c_id + ra
+    e_id = d_id + 2
+    f_id = e_id + 2
+    g_id = f_id + niveles
+    h_id = g_id + 2
+    i_id = h_id + 2
+    j_id = i_id + materias
+    k_id = j_id + 2
+    l_id = k_id + 2
+    m_id = l_id + profesores
+    n_id = m_id + 2
+    o_id = n_id + 2
+    p_id = o_id + materias
+    
+    a_g = 6 + profesores
+    b_g = a_g + 2
+    c_g = b_g + 2
+    d_g = c_g + niveles
+    e_g = d_g + 2
+    f_g = e_g + 2
+    g_g = f_g + materias
+    h_g = g_g + 2
+    i_g = h_g + 2
+    j_g = i_g + materias
+    k_g = j_g + 2
+    l_g = k_g + 2
+    m_g = l_g + materias
+    n_g = m_g + 2
+    o_g = n_g + 2
+    p_g = o_g + materias
+    q_g = p_g + 2
+    r_g = q_g + 2
+    s_g = r_g + 2
+    t_g = s_g + 2
+    u_g = t_g + materias2
+    v_g = u_g + 2
+    w_g = v_g + 2
+    x_g = w_g + materias2
+    
+    a_rm1 = 3 + materias2
+    b_rm1 = a_rm1 + materias2
+    
+    a_rm2 = 3 + materias2
+    b_rm2 = a_rm2 + materias2
+    
+    a_rf = 4 + ra
+    b_rf = a_rf + 2
+    c_rf = b_rf + 1
+    d_rf = c_rf + 1
+    e_rf = d_rf + materias2
+    f_rf = e_rf + 2
+    g_rf = f_rf + 2
+    h_rf = g_rf + profesores
+    
+    Application.ScreenUpdating = False
+    
+    Sheets("GENERADOS").Visible = False
+    Sheets("POSICIONES_CELDAS").Visible = False
+    Sheets("RESULTADO_MODELO1").Visible = False
+    Sheets("RESULTADO_MODELO2").Visible = False
+    
+    Sheets("REPORTE_FINAL").Select
+    Range("C5:" & LetraCol(ra + 6) & "5").Select
+    ActiveCell.FormulaR1C1 = "=+INGRESO_DATA!R[" & VBA.CStr(a_id) & "]C"
+    Range("C5:" & LetraCol(ra + 6) & "5").Select
+    Selection.AutoFill Destination:=Range("C5:" & LetraCol(ra + 6) & VBA.CStr(a_rf)), Type:=xlFillDefault
+    Range("C5:" & LetraCol(ra + 6) & VBA.CStr(a_rf)).Select
+    With Selection
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlBottom
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+        .ColorIndex = xlAutomatic
+    End With
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    Selection.Borders(xlInsideVertical).LineStyle = xlNone
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Range("B" & VBA.CStr(d_rf + 1)).Select
+    ActiveCell.FormulaR1C1 = "=+RESULTADO_MODELO2!R[" & VBA.CStr((a_rm2 + 1) - (d_rf + 1)) & "]C"
+    Range("B" & VBA.CStr(d_rf + 1)).Select
+    Selection.AutoFill Destination:=Range("B" & VBA.CStr(d_rf + 1) & ":B" & VBA.CStr(e_rf)), Type:=xlFillDefault
+    Range("B" & VBA.CStr(d_rf + 1) & ":B" & VBA.CStr(e_rf)).Select
+    Range("C" & VBA.CStr(d_rf + 1)).Select
+    ActiveCell.FormulaR1C1 = "=+RESULTADO_MODELO2!R[" & VBA.CStr((a_rm2 + 1) - (d_rf + 1)) & "]C"
+    Range("C" & VBA.CStr(d_rf + 1)).Select
+    Selection.AutoFill Destination:=Range("C" & VBA.CStr(d_rf + 1) & ":F" & VBA.CStr(d_rf + 1)), Type:=xlFillDefault
+    Range("C" & VBA.CStr(d_rf + 1) & ":F" & VBA.CStr(d_rf + 1)).Select
+    Selection.AutoFill Destination:=Range("C" & VBA.CStr(d_rf + 1) & ":F" & VBA.CStr(e_rf)), Type:=xlFillDefault
+    Range("C" & VBA.CStr(d_rf + 1) & ":F" & VBA.CStr(e_rf)).Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Range("G" & VBA.CStr(d_rf + 1)).Select
+    ActiveCell.FormulaR1C1 = _
+        "=+IF(RESULTADO_MODELO2!R[-" & VBA.CStr((d_rf + 1) - 2) & "]C[-5]="""","""",RESULTADO_MODELO2!R[-" & VBA.CStr((d_rf + 1) - 2) & "]C[-5])"
+    Range("G" & VBA.CStr(d_rf + 1)).Select
+    Selection.AutoFill Destination:=Range("G" & VBA.CStr(d_rf + 1) & ":" & LetraCol(ra + 6) & VBA.CStr(d_rf + 1)), Type:=xlFillDefault
+    Range("G" & VBA.CStr(d_rf + 1) & ":" & LetraCol(ra + 6) & VBA.CStr(d_rf + 1)).Select
+    Selection.AutoFill Destination:=Range("G" & VBA.CStr(d_rf + 1) & ":" & LetraCol(ra + 6) & VBA.CStr(e_rf)), Type:=xlFillDefault
+    Range("G" & VBA.CStr(d_rf + 1) & ":" & LetraCol(ra + 6) & VBA.CStr(e_rf)).Select
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+        .ColorIndex = xlAutomatic
+    End With
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Range("C" & VBA.CStr(g_rf + 1)).Select
+    ActiveCell.FormulaR1C1 = "=+INGRESO_DATA!R[-" & VBA.CStr((g_rf + 1) - 7) & "]C"
+    Range("C" & VBA.CStr(g_rf + 1)).Select
+    Selection.AutoFill Destination:=Range("C" & VBA.CStr(g_rf + 1) & ":C" & VBA.CStr(h_rf)), Type:=xlFillDefault
+    Range("C" & VBA.CStr(g_rf + 1) & ":C" & VBA.CStr(h_rf)).Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    Selection.Borders(xlInsideVertical).LineStyle = xlNone
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Range("D" & VBA.CStr(g_rf + 1)).Select
+    ActiveCell.FormulaR1C1 = "=+COUNTIF(R" & VBA.CStr(d_rf + 1) & "C6:R" & VBA.CStr(e_rf) & "C6,RC[-1])"
+    Range("D" & VBA.CStr(g_rf + 1)).Select
+    Selection.AutoFill Destination:=Range("D" & VBA.CStr(g_rf + 1) & ":D" & VBA.CStr(h_rf)), Type:=xlFillDefault
+    Range("D" & VBA.CStr(g_rf + 1) & ":D" & VBA.CStr(h_rf)).Select
+    Range("C" & VBA.CStr(g_rf + 1) & ":C" & VBA.CStr(h_rf)).Select
+    Selection.Copy
+    Range("D" & VBA.CStr(g_rf + 1)).Select
+    Selection.PasteSpecial Paste:=xlPasteFormats, Operation:=xlNone, _
+        SkipBlanks:=False, Transpose:=False
+    Application.CutCopyMode = False
+    Range("C" & VBA.CStr(d_rf + 1) & ":" & LetraCol(ra + 6) & VBA.CStr(e_rf)).Select
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+        .ColorIndex = xlAutomatic
+    End With
+    Range("C" & VBA.CStr(g_rf + 1) & ":D" & VBA.CStr(h_rf)).Select
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+        .ColorIndex = xlAutomatic
+    End With
+    Columns("C:C").ColumnWidth = 75
+    Columns("D:D").ColumnWidth = 20
+    Columns("E:E").ColumnWidth = 20
+    Columns("F:F").ColumnWidth = 47
+    
+    ActiveWindow.Zoom = 70
+    Application.GoTo Range("B2"), True
+    Application.ScreenUpdating = True
+    
+End Sub
+
