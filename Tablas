@@ -1,0 +1,2158 @@
+Option Explicit
+
+Sub MostrarFormulario()
+
+    UserForm1.Show
+    
+End Sub
+
+Function LetraCol(NumCol As Long) As String
+
+    Dim Arreglo
+    Arreglo = Split(Cells(1, NumCol).Address(True, False), "$")
+    LetraCol = Arreglo(0)
+    
+End Function
+
+Sub IngresoData()
+    
+    Dim profesores As Long
+    Dim niveles As Long
+    Dim ra As Long
+    Dim materias As Long
+    Dim a As Long
+    Dim b As Long
+    Dim c As Long
+    Dim d As Long
+    Dim e As Long
+    Dim f As Long
+    Dim g As Long
+    Dim h As Long
+    Dim i As Long
+    Dim j As Long
+    Dim k As Long
+    Dim l As Long
+    Dim m As Long
+    Dim n As Long
+    Dim o As Long
+    Dim p As Long
+    
+    profesores = UserForm1.i_profesores.Value
+    niveles = UserForm1.k_niveles.Value
+    ra = UserForm1.l_RA.Value
+    materias = UserForm1.j_materias.Value
+    a = 6 + profesores
+    b = a + 2
+    c = b + 2
+    d = c + ra
+    e = d + 2
+    f = e + 2
+    g = f + niveles
+    h = g + 2
+    i = h + 2
+    j = i + materias
+    k = j + 2
+    l = k + 2
+    m = l + profesores
+    n = m + 2
+    o = n + 2
+    p = o + materias
+    
+    Application.ScreenUpdating = False
+    Sheets.Add After:=Sheets("COMENZAR")
+    ActiveSheet.Name = "INGRESO_DATA"
+    Sheets("INGRESO_DATA").Select
+    Range("A2").Select
+    ActiveCell.FormulaR1C1 = "INGRESO DE DATOS"
+    Rows("1:1").RowHeight = 16.8
+    Cells.Select
+    With Selection.Font
+        .Name = "Arial"
+    End With
+    ActiveWindow.DisplayGridlines = False
+    Range("A4").Select
+    ActiveCell.FormulaR1C1 = _
+        "Ingrese los nombres y apellidos de los profesores que dictan las materias de carácter profesional:"
+    Columns("A:A").Select
+    Selection.Insert Shift:=xlToRight, CopyOrigin:=xlFormatFromLeftOrAbove
+    Selection.ColumnWidth = 2.56
+    Range("B6").Select
+    ActiveCell.FormulaR1C1 = "PROFESOR (j)"
+    Range("C6").Select
+    ActiveCell.FormulaR1C1 = "NOMBRE"
+    Range("B7").Select
+    ActiveCell.FormulaR1C1 = "1"
+    Range("B8").Select
+    ActiveCell.FormulaR1C1 = "2"
+    Range("B9").Select
+    ActiveCell.FormulaR1C1 = "3"
+    Range("B8:B9").Select
+    Selection.AutoFill Destination:=Range("B8:B" & VBA.CStr(a)), Type:=xlFillDefault
+    Range("B8:B" & VBA.CStr(a)).Select
+    Range("B6:B" & VBA.CStr(a) & ",C6").Select
+    Range("C6").Activate
+    Selection.Font.Bold = True
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Range("B6").Select
+    Columns("C:C").ColumnWidth = 45.44
+    Columns("B:B").ColumnWidth = 15.56
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorLight1
+    End With
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("B7:B" & VBA.CStr(a)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 10498160
+    End With
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("C6").Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 6299648
+    End With
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("C7:C" & VBA.CStr(a)).Select
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    Selection.Borders(xlInsideVertical).LineStyle = xlNone
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Range("B" & VBA.CStr(b)).Select
+    Selection.Font.Bold = True
+    ActiveCell.FormulaR1C1 = _
+        "Ingrese la descripción de cada uno de los Resultados de Aprendizaje:"
+    Range("B" & VBA.CStr(c)).Select
+    ActiveCell.FormulaR1C1 = "RA (r)"
+    Range("B" & VBA.CStr(c + 1)).Select
+    ActiveCell.FormulaR1C1 = "1"
+    Range("B" & VBA.CStr(c + 2)).Select
+    ActiveCell.FormulaR1C1 = "2"
+    Range("B" & VBA.CStr(c + 3)).Select
+    ActiveCell.FormulaR1C1 = "3"
+    Range("B" & VBA.CStr(c + 2) & ":B" & VBA.CStr(c + 3)).Select
+    Selection.AutoFill Destination:=Range("B" & VBA.CStr(c + 2) & ":B" & VBA.CStr(d)), Type:=xlFillDefault
+    Range("B" & VBA.CStr(c + 2) & ":B" & VBA.CStr(d)).Select
+    Range("C" & VBA.CStr(c)).Select
+    ActiveCell.FormulaR1C1 = "DESCRIPCIÓN"
+    Range("C" & VBA.CStr(c) & ":R" & VBA.CStr(c)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Selection.Merge
+    Selection.Copy
+    Range("C" & VBA.CStr(c + 1) & ":C" & VBA.CStr(d)).Select
+    Selection.PasteSpecial Paste:=xlPasteFormats, Operation:=xlNone, _
+        SkipBlanks:=False, Transpose:=False
+    Application.CutCopyMode = False
+    Range("F" & VBA.CStr(d - 2)).Select
+    ActiveCell.FormulaR1C1 = ""
+    Range("B" & VBA.CStr(c) & ":R" & VBA.CStr(d)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Range("C" & VBA.CStr(c + 1) & ":R" & VBA.CStr(c + 1)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Selection.Merge
+    Selection.Copy
+    Range("C" & VBA.CStr(c + 2)).Select
+    Selection.PasteSpecial Paste:=xlPasteFormats, Operation:=xlNone, _
+        SkipBlanks:=False, Transpose:=False
+    Application.CutCopyMode = False
+    Selection.Copy
+    Range("C" & VBA.CStr(c + 3) & ":R" & VBA.CStr(d)).Select
+    Selection.PasteSpecial Paste:=xlPasteFormats, Operation:=xlNone, _
+        SkipBlanks:=False, Transpose:=False
+    Application.CutCopyMode = False
+    Range("B" & VBA.CStr(c + 1) & ":B" & VBA.CStr(d) & ",C" & VBA.CStr(c) & ":R" & VBA.CStr(c)).Select
+    Range("C" & VBA.CStr(c)).Activate
+    Selection.Font.Bold = True
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("B" & VBA.CStr(c)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorLight1
+    End With
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Selection.Font.Bold = True
+    Range("B" & VBA.CStr(c + 1) & ":B" & VBA.CStr(d)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 10498160
+    End With
+    Range("C" & VBA.CStr(c) & ":R" & VBA.CStr(c)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 6299648
+    End With
+    Range("C" & VBA.CStr(c + 1) & ":R" & VBA.CStr(d)).Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    Selection.Borders(xlInsideVertical).LineStyle = xlNone
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Range("B" & VBA.CStr(e)).Select
+    Selection.Font.Bold = True
+    ActiveCell.FormulaR1C1 = _
+        "Ingrese el nombre de cada uno de los niveles de la malla:"
+    Range("B" & VBA.CStr(f)).Select
+    ActiveCell.FormulaR1C1 = "NIVEL (k)"
+    Range("C" & VBA.CStr(f)).Select
+    ActiveCell.FormulaR1C1 = "NOMBRE"
+    Range("B" & VBA.CStr(f + 1)).Select
+    ActiveCell.FormulaR1C1 = "1"
+    Range("B" & VBA.CStr(f + 2)).Select
+    ActiveCell.FormulaR1C1 = "2"
+    Range("B" & VBA.CStr(f + 1) & ":B" & VBA.CStr(f + 2)).Select
+    Selection.AutoFill Destination:=Range("B" & VBA.CStr(f + 1) & ":B" & VBA.CStr(g)), Type:=xlFillDefault
+    Range("B" & VBA.CStr(f + 1) & ":B" & VBA.CStr(g)).Select
+    Range("B" & VBA.CStr(f) & ":B" & VBA.CStr(g) & ",C" & VBA.CStr(f)).Select
+    Range("C" & VBA.CStr(f)).Activate
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Selection.Font.Bold = True
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("B" & VBA.CStr(f)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorLight1
+    End With
+    Range("B" & VBA.CStr(f + 1) & ":B" & VBA.CStr(g)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 10498160
+    End With
+    Range("C" & VBA.CStr(f)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 6299648
+    End With
+    Range("C" & VBA.CStr(f + 1) & ":C" & VBA.CStr(g)).Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    Selection.Borders(xlInsideVertical).LineStyle = xlNone
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Range("B" & VBA.CStr(h)).Select
+    ActiveCell.FormulaR1C1 = _
+        "Ingrese el nombre de cada una de las materias que se dictarám durante el año académico, así como su paralelo, término, profesor y nivel:"
+    Range("B" & VBA.CStr(h)).Font.Bold = True
+    Range("B" & VBA.CStr(i)).Select
+    ActiveCell.FormulaR1C1 = "MATERIA (i)"
+    Range("C" & VBA.CStr(i)).Select
+    ActiveCell.FormulaR1C1 = "NOMBRE"
+    Range("D" & VBA.CStr(i)).Select
+    ActiveCell.FormulaR1C1 = "PARALELO"
+    Range("E" & VBA.CStr(i)).Select
+    ActiveCell.FormulaR1C1 = "TÉRMINO"
+    Range("F" & VBA.CStr(i)).Select
+    ActiveCell.FormulaR1C1 = "PROFESOR (j)"
+    Range("G" & VBA.CStr(i)).Select
+    ActiveCell.FormulaR1C1 = "NO. PROFESOR"
+    Range("H" & VBA.CStr(i)).Select
+    ActiveCell.FormulaR1C1 = "NIVEL (k)"
+    Range("I" & VBA.CStr(i)).Select
+    ActiveCell.FormulaR1C1 = "NO. NIVEL"
+    Range("B" & VBA.CStr(i + 1)).Select
+    ActiveCell.FormulaR1C1 = "1"
+    Range("B" & VBA.CStr(i + 2)).Select
+    ActiveCell.FormulaR1C1 = "2"
+    Range("B" & VBA.CStr(i + 3)).Select
+    ActiveCell.FormulaR1C1 = "3"
+    Range("B" & VBA.CStr(i + 4)).Select
+    Range("B" & VBA.CStr(i + 2) & ":B" & VBA.CStr(i + 3)).Select
+    Selection.AutoFill Destination:=Range("B" & VBA.CStr(i + 2) & ":B" & VBA.CStr(j)), Type:=xlFillDefault
+    Range("B" & VBA.CStr(i + 2) & ":B" & VBA.CStr(j)).Select
+    Range("B" & VBA.CStr(i)).Select
+    Range(Selection, Selection.End(xlDown)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Selection.Font.Bold = True
+    Range("C" & VBA.CStr(i) & ":I" & VBA.CStr(i)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Selection.Font.Bold = True
+    Columns("E:E").ColumnWidth = 11.11
+    Columns("C:C").ColumnWidth = 75
+    Columns("G:G").ColumnWidth = 16.22
+    Columns("H:H").ColumnWidth = 12.11
+    Columns("I:I").ColumnWidth = 11.56
+    Columns("D:D").ColumnWidth = 12.22
+    Columns("F:F").ColumnWidth = 36.44
+    With Selection
+        .HorizontalAlignment = xlGeneral
+        .VerticalAlignment = xlBottom
+    End With
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Range("B" & VBA.CStr(i)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorLight1
+    End With
+    Range("C" & VBA.CStr(i) & ":I" & VBA.CStr(i)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 6299648
+    End With
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("B" & VBA.CStr(i)).Select
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("B" & VBA.CStr(i + 1)).Select
+    Range(Selection, Selection.End(xlDown)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 10498160
+    End With
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Columns("D:D").ColumnWidth = 12.78
+    Columns("E:E").ColumnWidth = 12.67
+    Range("C" & VBA.CStr(i + 1) & ":I" & VBA.CStr(j)).Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Range("B" & VBA.CStr(k)).Select
+    ActiveCell.FormulaR1C1 = _
+        "Ingrese la matriz de preferencias de los profesores respecto a la evaluación de los resultados de aprendizaje:"
+    Range("B" & VBA.CStr(k)).Font.Bold = True
+    Range("B" & VBA.CStr(l)).Select
+    ActiveCell.FormulaR1C1 = "PROFESOR (i) / RA ( r)"
+    Range("B" & VBA.CStr(l)).Select
+    ActiveCell.FormulaR1C1 = "PROFESOR (i) / RA (r)"
+    Range("B" & VBA.CStr(l + 1)).Select
+    ActiveCell.FormulaR1C1 = "1"
+    Range("B" & VBA.CStr(l + 2)).Select
+    ActiveCell.FormulaR1C1 = "2"
+    Range("B" & VBA.CStr(l + 3)).Select
+    ActiveCell.FormulaR1C1 = "3"
+    Range("B" & VBA.CStr(l + 4)).Select
+    Range("B" & VBA.CStr(l + 2) & ":B" & VBA.CStr(l + 3)).Select
+    Selection.AutoFill Destination:=Range("B" & VBA.CStr(l + 2) & ":B" & VBA.CStr(m)), Type:=xlFillDefault
+    Range("B" & VBA.CStr(l + 2) & ":B" & VBA.CStr(m)).Select
+    Range("C" & VBA.CStr(l)).Select
+    ActiveCell.FormulaR1C1 = "1"
+    Range("D" & VBA.CStr(l)).Select
+    ActiveCell.FormulaR1C1 = "2"
+    Range("C" & VBA.CStr(l) & ":D" & VBA.CStr(l)).Select
+    Selection.AutoFill Destination:=Range("C" & VBA.CStr(l) & ":" & LetraCol(ra + 2) & VBA.CStr(l)), Type:=xlFillDefault
+    Range("C" & VBA.CStr(l) & ":" & LetraCol(ra + 2) & VBA.CStr(l)).Select
+    Range("B" & VBA.CStr(l)).Select
+    Columns("B:B").ColumnWidth = 23.89
+    Range(LetraCol(ra + 2) & VBA.CStr(m)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    With Selection
+        .HorizontalAlignment = xlGeneral
+        .VerticalAlignment = xlBottom
+    End With
+    Range("B" & VBA.CStr(l) & ":" & LetraCol(ra + 2) & VBA.CStr(m)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Range("C" & VBA.CStr(l) & ":" & LetraCol(ra + 2) & VBA.CStr(l)).Select
+    Selection.Font.Bold = True
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 6299648
+    End With
+    Range("B" & VBA.CStr(l)).Select
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorLight1
+    End With
+    Range("B" & VBA.CStr(l + 1) & ":B" & VBA.CStr(m)).Select
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 10498160
+    End With
+    Range("C" & VBA.CStr(l + 1) & ":" & LetraCol(ra + 2) & VBA.CStr(m)).Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    Selection.Borders(xlInsideVertical).LineStyle = xlNone
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .ThemeColor = 2
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Range("C" & VBA.CStr(i + 1) & ":I" & VBA.CStr(j)).Select
+    Range("I" & VBA.CStr(j)).Activate
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Range("C" & VBA.CStr(f + 1) & ":C" & VBA.CStr(g)).Select
+    Range("C" & VBA.CStr(g)).Activate
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Range("C" & VBA.CStr(c + 1) & ":G" & VBA.CStr(d)).Select
+    Range("C" & VBA.CStr(d)).Activate
+    With Selection
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlBottom
+    End With
+    Range("C7:C" & VBA.CStr(a)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Columns("C:C").ColumnWidth = 75
+    Columns("F:F").ColumnWidth = 47
+    Range("B" & VBA.CStr(n)).Select
+    ActiveCell.FormulaR1C1 = _
+        "Ingrese la matriz de compatibilidad de las materias para evaluar cada uno de los resultados de aprendizaje:"
+    Range("B" & VBA.CStr(n)).Font.Bold = True
+    Range("B" & VBA.CStr(o)).Select
+    ActiveCell.FormulaR1C1 = "MATERIA (i) / RA ( r)"
+    Range("B" & VBA.CStr(o)).Select
+    ActiveCell.FormulaR1C1 = "MATERIA (i) / RA (r)"
+    Range("B" & VBA.CStr(o + 1)).Select
+    ActiveCell.FormulaR1C1 = "1"
+    Range("B" & VBA.CStr(o + 2)).Select
+    ActiveCell.FormulaR1C1 = "2"
+    Range("B" & VBA.CStr(o + 1) & ":B" & VBA.CStr(o + 2)).Select
+    Selection.AutoFill Destination:=Range("B" & VBA.CStr(o + 1) & ":B" & VBA.CStr(p)), Type:=xlFillDefault
+    Range("B" & VBA.CStr(o + 1) & ":B" & VBA.CStr(p)).Select
+    Range("C" & VBA.CStr(o)).Select
+    ActiveCell.FormulaR1C1 = "1"
+    Range("D" & VBA.CStr(o)).Select
+    ActiveCell.FormulaR1C1 = "2"
+    Range("C" & VBA.CStr(o) & ":D" & VBA.CStr(o)).Select
+    Selection.AutoFill Destination:=Range("C" & VBA.CStr(o) & ":" & LetraCol(ra + 2) & VBA.CStr(o)), Type:=xlFillDefault
+    Range("C" & VBA.CStr(o) & ":" & LetraCol(ra + 2) & VBA.CStr(o)).Select
+    Range("B" & VBA.CStr(o)).Select
+    Range(Selection, Selection.End(xlDown)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Selection.Font.Bold = True
+    Range("C" & VBA.CStr(o) & ":" & LetraCol(ra + 2) & VBA.CStr(o)).Select
+    Selection.Font.Bold = True
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 6299648
+    End With
+    Range("B" & VBA.CStr(o)).Select
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorLight1
+    End With
+    Range("B" & VBA.CStr(o + 1)).Select
+    Range(Selection, Selection.End(xlDown)).Select
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 10498160
+    End With
+    Range("C" & VBA.CStr(o + 1) & ":" & LetraCol(ra + 2) & VBA.CStr(p)).Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Range("C" & VBA.CStr(o + 1) & ":" & LetraCol(ra + 2) & VBA.CStr(p)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Range("B" & VBA.CStr(l)).Select
+    ActiveCell.FormulaR1C1 = "PROFESOR (j) / RA (r)"
+    Rows((p + 3) & ":" & (p + 3)).Select
+    Range(Selection, Selection.End(xlDown)).Select
+    Selection.EntireRow.Hidden = True
+    
+    Range("B2").Font.Color = -6279056
+    Range("B2").Font.Bold = True
+    Range("B2").Font.Size = 18
+    Range("B4").Font.Bold = True
+    
+    Application.GoTo Reference:=Range("B2"), Scroll:=True
+    Call FormulasIngresoData
+    
+End Sub
+
+Sub TablasGeneradas()
+    
+    Dim profesores As Long
+    Dim niveles As Long
+    Dim ra As Long
+    Dim materias As Long
+    Dim materias2 As Long
+    Dim a As Long
+    Dim b As Long
+    Dim c As Long
+    Dim d As Long
+    Dim e As Long
+    Dim f As Long
+    Dim g As Long
+    Dim h As Long
+    Dim i As Long
+    Dim j As Long
+    Dim k As Long
+    Dim l As Long
+    Dim m As Long
+    Dim n As Long
+    Dim o As Long
+    Dim p As Long
+    Dim q As Long
+    Dim r As Long
+    Dim s As Long
+    Dim t As Long
+    Dim u As Long
+    Dim v As Long
+    Dim w As Long
+    Dim x As Long
+    
+    profesores = UserForm1.i_profesores.Value
+    niveles = UserForm1.k_niveles.Value
+    ra = UserForm1.l_RA.Value
+    materias = UserForm1.j_materias.Value
+    materias2 = ra * niveles
+    
+    a = 6 + profesores
+    b = a + 2
+    c = b + 2
+    d = c + niveles
+    e = d + 2
+    f = e + 2
+    g = f + materias
+    h = g + 2
+    i = h + 2
+    j = i + materias
+    k = j + 2
+    l = k + 2
+    m = l + materias
+    n = m + 2
+    o = n + 2
+    p = o + materias
+    q = p + 2
+    r = q + 2
+    s = r + 2
+    t = s + 2
+    u = t + materias2
+    v = u + 2
+    w = v + 2
+    x = w + materias2
+    
+    Application.ScreenUpdating = False
+    Sheets.Add After:=Sheets("INGRESO_DATA")
+    ActiveSheet.Name = "GENERADOS"
+    Sheets("GENERADOS").Select
+    Range("A2").Select
+    ActiveCell.FormulaR1C1 = "MODELO MATEMÁTICO 1"
+    Cells.Select
+    With Selection.Font
+        .Name = "Arial"
+        .Size = 11
+        .ThemeColor = xlThemeColorLight1
+    End With
+    Range("A2").Select
+    Selection.Font.Bold = True
+    With Selection.Font
+        .Color = -6279056
+    End With
+    Selection.Font.Size = 16
+    Range("A4").Select
+    Selection.Font.Bold = True
+    ActiveCell.FormulaR1C1 = "Total de materias por profesor:"
+    Range("A6").Select
+    ActiveWindow.DisplayGridlines = False
+    Range("A2:A4").Select
+    Selection.Cut
+    Range("B2").Select
+    ActiveSheet.Paste
+    Columns("A:A").ColumnWidth = 2
+    Range("B6").Select
+    ActiveCell.FormulaR1C1 = "PROFESOR"
+    Range("C6").Select
+    ActiveCell.FormulaR1C1 = "NOMBRE"
+    Range("D6").Select
+    ActiveCell.FormulaR1C1 = "TOTAL"
+    Range("B7").Select
+    ActiveCell.FormulaR1C1 = "1"
+    Range("B8").Select
+    ActiveCell.FormulaR1C1 = "2"
+    Range("B7:B8").Select
+    Selection.AutoFill Destination:=Range("B7:B" & VBA.CStr(a)), Type:=xlFillDefault
+    Range("B7:B" & VBA.CStr(a)).Select
+    Range("B6").Select
+    ActiveCell.FormulaR1C1 = "PROFESOR (j)"
+    Range("B6:B" & VBA.CStr(a) & ",C6:D6").Select
+    Range("C6").Activate
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Selection.Font.Bold = True
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("C6:D6").Select
+    Range("D6").Activate
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 6299648
+    End With
+    Range("B6").Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorLight1
+    End With
+    Range("B7:B" & VBA.CStr(a)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 10498160
+    End With
+    Columns("B:B").ColumnWidth = 16.11
+    Columns("C:C").ColumnWidth = 45
+    Columns("D:D").ColumnWidth = 11.11
+    Range("C7:D" & VBA.CStr(a)).Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Range("B" & VBA.CStr(b)).Select
+    ActiveCell.FormulaR1C1 = "Total de materias por nivel:"
+    Range("B" & VBA.CStr(c)).Select
+    ActiveCell.FormulaR1C1 = "NIVEL (k)"
+    Range("C" & VBA.CStr(c)).Select
+    ActiveCell.FormulaR1C1 = "NOMBRE"
+    Range("D" & VBA.CStr(c)).Select
+    ActiveCell.FormulaR1C1 = "TOTAL"
+    Range("B" & VBA.CStr(c + 1)).Select
+    ActiveCell.FormulaR1C1 = "1"
+    Range("B" & VBA.CStr(c + 2)).Select
+    ActiveCell.FormulaR1C1 = "2"
+    Range("B" & VBA.CStr(c + 1) & ":B" & VBA.CStr(c + 2)).Select
+    Selection.AutoFill Destination:=Range("B" & VBA.CStr(c + 1) & ":B" & VBA.CStr(d)), Type:=xlFillDefault
+    Range("B" & VBA.CStr(c) & ":D" & VBA.CStr(c)).Select
+    Selection.Font.Bold = True
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Range("B" & VBA.CStr(c + 1) & ":B" & VBA.CStr(d)).Select
+    Selection.Font.Bold = True
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Range("B" & VBA.CStr(c) & ":B" & VBA.CStr(d) & ",C" & VBA.CStr(c) & ":D" & VBA.CStr(c)).Select
+    Range("C" & VBA.CStr(c)).Activate
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("C" & VBA.CStr(c) & ":D" & VBA.CStr(c)).Select
+    Range("D" & VBA.CStr(c)).Activate
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 6299648
+    End With
+    Range("B" & VBA.CStr(c)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorLight1
+    End With
+    Range("B" & VBA.CStr(c + 1) & ":B" & VBA.CStr(d)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 10498160
+    End With
+    Range("C" & VBA.CStr(c + 1) & ":D" & VBA.CStr(d)).Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Range("C7:D" & VBA.CStr(a)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Range("B" & VBA.CStr(b)).Select
+    Selection.Font.Bold = True
+    Range("B" & VBA.CStr(e)).Select
+    Selection.Font.Bold = True
+    ActiveCell.FormulaR1C1 = "Vector de beneficios por materia:"
+    Range("B" & VBA.CStr(f)).Select
+    ActiveCell.FormulaR1C1 = "Materia (i)"
+    Range("C" & VBA.CStr(f)).Select
+    ActiveCell.FormulaR1C1 = "BENEFICIO (b)"
+    Range("B" & VBA.CStr(f)).Select
+    ActiveCell.FormulaR1C1 = "MATERIA (i)"
+    Range("B" & VBA.CStr(f + 1)).Select
+    ActiveCell.FormulaR1C1 = "1"
+    Range("B" & VBA.CStr(f + 2)).Select
+    ActiveCell.FormulaR1C1 = "2"
+    Range("B" & VBA.CStr(f + 1) & ":B" & VBA.CStr(f + 2)).Select
+    Selection.AutoFill Destination:=Range("B" & VBA.CStr(f + 1) & ":B" & VBA.CStr(g)), Type:=xlFillDefault
+    Range("B" & VBA.CStr(f + 1) & ":B" & VBA.CStr(g)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Selection.Font.Bold = True
+    Range("B" & VBA.CStr(f) & ":C" & VBA.CStr(f)).Select
+    Selection.Font.Bold = True
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Range("C" & VBA.CStr(f)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 6299648
+    End With
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("B" & VBA.CStr(f)).Select
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorLight1
+    End With
+    Range("B" & VBA.CStr(f + 1) & ":B" & VBA.CStr(g)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 10498160
+    End With
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("C" & VBA.CStr(g)).Select
+    Range(Selection, Selection.End(xlUp)).Select
+    Range("C" & VBA.CStr(f + 1) & ":C" & VBA.CStr(g)).Select
+    Range("C" & VBA.CStr(g)).Activate
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    Selection.Borders(xlInsideVertical).LineStyle = xlNone
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Range("B" & VBA.CStr(e) & ":C" & VBA.CStr(g)).Select
+    Selection.Copy
+    Range("B" & VBA.CStr(h)).Select
+    ActiveSheet.Paste
+    Application.CutCopyMode = False
+    Range("B" & VBA.CStr(h)).Select
+    ActiveCell.FormulaR1C1 = "Vector de carga de trabajo por materia:"
+    Range("C" & VBA.CStr(i)).Select
+    ActiveCell.FormulaR1C1 = "CARGA DE TRABAJO (w)"
+    Application.CutCopyMode = False
+    Range("C" & VBA.CStr(i + 2)).Select
+    ActiveWindow.Zoom = 85
+    ActiveWindow.Zoom = 70
+    Range("B" & VBA.CStr(h) & ":C" & VBA.CStr(j)).Select
+    Selection.Copy
+    Range("B" & VBA.CStr(k)).Select
+    ActiveSheet.Paste
+    Application.CutCopyMode = False
+    Range("B" & VBA.CStr(k)).Select
+    ActiveCell.FormulaR1C1 = "Matriz de materia - profesor:"
+    Range("B" & VBA.CStr(l)).Select
+    ActiveCell.FormulaR1C1 = "MATERIA (i) / PROFESOR (j)"
+    Range("C" & VBA.CStr(l)).Select
+    ActiveCell.FormulaR1C1 = "1"
+    Range("B" & VBA.CStr(l)).Select
+    Columns("B:B").ColumnWidth = 34.89
+    Range("C" & VBA.CStr(l) & ":C" & VBA.CStr(m)).Select
+    Selection.Copy
+    For i = 4 To profesores + 2
+        Range(LetraCol(i) & VBA.CStr(l)).Select
+        ActiveSheet.Paste
+    Next i
+    Range("D" & VBA.CStr(l)).Select
+    Application.CutCopyMode = False
+    ActiveCell.FormulaR1C1 = "2"
+    For i = 5 To profesores + 2
+        Range(LetraCol(i) & VBA.CStr(l)).Select
+        ActiveCell.FormulaR1C1 = VBA.CStr(i - 2)
+    Next i
+    Range("B" & VBA.CStr(k) & ":" & LetraCol(niveles + 2) & VBA.CStr(m)).Select
+    Selection.Copy
+    Range("B" & VBA.CStr(n)).Select
+    ActiveSheet.Paste
+    Application.CutCopyMode = False
+    Range("B" & VBA.CStr(n)).Select
+    ActiveCell.FormulaR1C1 = "Matriz de materia - nivel:"
+    Range("B" & VBA.CStr(o)).Select
+    ActiveCell.FormulaR1C1 = "MATERIA (i) / NIVEL (k)"
+    Range("B" & VBA.CStr(q)).Select
+    Selection.Font.Bold = True
+    ActiveCell.FormulaR1C1 = "Máximo de materias a evaluar por profesor ( c):"
+    Range(LetraCol(niveles + 2) & VBA.CStr(q)).Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    Selection.Borders(xlInsideVertical).LineStyle = xlNone
+    Selection.Borders(xlInsideHorizontal).LineStyle = xlNone
+    Range("B" & VBA.CStr(q)).Select
+    ActiveCell.FormulaR1C1 = "Máximo de materias a evaluar por profesor (C):"
+    Range("B2").Select
+    Selection.Copy
+    Range("B" & VBA.CStr(r)).Select
+    ActiveSheet.Paste
+    Range("B" & VBA.CStr(r)).Select
+    Application.CutCopyMode = False
+    ActiveCell.FormulaR1C1 = "MODELO MATEMÁTICO 2"
+    Range("B" & VBA.CStr(q)).Select
+    Selection.Copy
+    Range("B" & VBA.CStr(s)).Select
+    ActiveSheet.Paste
+    Application.CutCopyMode = False
+    ActiveCell.FormulaR1C1 = "Matriz de preferencias:"
+    Range("B" & VBA.CStr(t)).Select
+    Range("B" & VBA.CStr(o) & ":" & LetraCol(niveles + 2) & VBA.CStr(o + materias2)).Select
+    Selection.Copy
+    Range("B" & VBA.CStr(t)).Select
+    ActiveSheet.Paste
+    Application.CutCopyMode = False
+    Selection.Copy
+    Range("F" & VBA.CStr(t)).Select
+    Application.CutCopyMode = False
+    Range("C" & VBA.CStr(t) & ":C" & VBA.CStr(u)).Select
+    Selection.Copy
+    For i = 4 To ra + 2
+        Range(LetraCol(i) & VBA.CStr(t)).Select
+        ActiveSheet.Paste
+    Next i
+    Application.CutCopyMode = False
+    For i = 3 To ra + 2
+        Range(LetraCol(i) & VBA.CStr(t)).Select
+        ActiveCell.FormulaR1C1 = VBA.CStr(i - 2)
+    Next i
+    Range("B" & VBA.CStr(t)).Select
+    ActiveCell.FormulaR1C1 = "MATERIA (q) / RA ( r)"
+    Range("B" & VBA.CStr(t)).Select
+    ActiveCell.FormulaR1C1 = "MATERIA (q) / RA (r)"
+    Range("C" & VBA.CStr(u) & ":" & LetraCol(niveles + 2) & VBA.CStr(u)).Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .ColorIndex = xlAutomatic
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    Selection.Borders(xlInsideHorizontal).LineStyle = xlNone
+    Range("B" & VBA.CStr(s) & ":" & LetraCol(ra + 2) & VBA.CStr(u)).Select
+    Selection.Copy
+    Range("B" & VBA.CStr(v)).Select
+    ActiveSheet.Paste
+    Range("B" & VBA.CStr(v)).Select
+    Application.CutCopyMode = False
+    ActiveCell.FormulaR1C1 = "Matriz de compatibilidad:"
+    Rows(VBA.CStr(x + 3) & ":" & VBA.CStr(x + 3)).Select
+    Range(Selection, Selection.End(xlDown)).Select
+    Selection.EntireRow.Hidden = True
+
+    Application.GoTo Range("B2"), True
+    ActiveWindow.Zoom = 100
+    Call FormulasTablasGeneradas1
+    
+End Sub
+
+Sub PosicionesCeldas()
+    
+    Application.ScreenUpdating = False
+    Sheets.Add After:=Sheets("GENERADOS")
+    ActiveSheet.Name = "POSICIONES_CELDAS"
+    Sheets("POSICIONES_CELDAS").Select
+    Columns("A:A").ColumnWidth = 3.33
+    Range("B2").Select
+    ActiveCell.FormulaR1C1 = "POSICIONES DE LAS CELDAS"
+    Cells.Select
+    With Selection.Font
+        .Name = "Arial"
+        .Size = 11
+        .ThemeColor = xlThemeColorLight1
+    End With
+    Range("B2").Select
+    Selection.Font.Bold = True
+    With Selection.Font
+        .Color = -6279056
+        .TintAndShade = 0
+    End With
+    Selection.Font.Size = 12
+    Selection.Font.Size = 14
+    ActiveWindow.DisplayGridlines = False
+    Range("B5").Select
+    ActiveCell.FormulaR1C1 = "M1"
+    Range("C5").Select
+    ActiveCell.FormulaR1C1 = "INICIAL"
+    Range("D5").Select
+    ActiveCell.FormulaR1C1 = "FINAL"
+    Range("B6").Select
+    ActiveCell.FormulaR1C1 = "i"
+    Range("B7").Select
+    ActiveCell.FormulaR1C1 = "j"
+    Range("B8").Select
+    ActiveCell.FormulaR1C1 = "k"
+    Range("B9").Select
+    ActiveCell.FormulaR1C1 = "b"
+    Range("B10").Select
+    ActiveCell.FormulaR1C1 = "w"
+    Range("B11").Select
+    ActiveCell.FormulaR1C1 = "mp"
+    Range("B12").Select
+    ActiveCell.FormulaR1C1 = "mn"
+    Range("B13").Select
+    ActiveCell.FormulaR1C1 = "c"
+    Range("B14").Select
+    ActiveCell.FormulaR1C1 = "M2"
+    Range("C14").Select
+    ActiveCell.FormulaR1C1 = "INICIAL"
+    Range("D14").Select
+    ActiveCell.FormulaR1C1 = "FINAL"
+    Range("B15").Select
+    ActiveCell.FormulaR1C1 = "q"
+    Range("B16").Select
+    ActiveCell.FormulaR1C1 = "r"
+    Range("B17").Select
+    ActiveCell.FormulaR1C1 = "in"
+    Range("B18").Select
+    ActiveCell.FormulaR1C1 = "me"
+    Range("B19").Select
+    ActiveCell.FormulaR1C1 = "av"
+    Range("B20").Select
+    ActiveCell.FormulaR1C1 = "p"
+    Range("B21").Select
+    ActiveCell.FormulaR1C1 = "f"
+    Range("C4:D4").Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Selection.Merge
+    ActiveCell.FormulaR1C1 = "POSICIONES"
+    Range("B4:D21").Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Range("C4:D5").Select
+    Selection.Font.Bold = True
+    Range("B5:B21,C14:D14").Select
+    Range("C14").Activate
+    Selection.Font.Bold = True
+    Range("C5").Select
+    Columns("C:C").ColumnWidth = 21.22
+    Columns("D:D").ColumnWidth = 21.22
+    Range("B5:D5").Select
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorLight1
+    End With
+    Range("C4:D4").Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 6299648
+    End With
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("B14:D14").Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorLight1
+    End With
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("B6:B13").Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 10498160
+    End With
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("B15:B21").Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 10498160
+    End With
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("C6:D13,C15:D21").Select
+    Range("C15").Activate
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Rows("24:24").Select
+    Range(Selection, Selection.End(xlDown)).Select
+    Selection.EntireRow.Hidden = True
+    Columns("F:F").Select
+    Range(Selection, Selection.End(xlToRight)).Select
+    Selection.EntireColumn.Hidden = True
+    Range("B2:D2").Select
+    Selection.Merge
+    With Selection
+        .HorizontalAlignment = xlLeft
+        .MergeCells = True
+    End With
+    Columns("E:E").ColumnWidth = 4.11
+    Range("B2").Select
+    Columns("E:E").Select
+    Range("E2").Activate
+    Selection.Insert Shift:=xlToRight, CopyOrigin:=xlFormatFromLeftOrAbove
+    Range("D5:D21").Select
+    Selection.Copy
+    Range("E5").Select
+    Application.CutCopyMode = False
+    Range("E5").Select
+    ActiveCell.FormulaR1C1 = "UNIÓN"
+    Range("E14").Select
+    ActiveCell.FormulaR1C1 = "UNIÓN"
+    Rows("23:23").Select
+    Range("B23").Activate
+    Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
+    Rows("23:24").Select
+    Range("B23").Activate
+    Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
+    Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
+    Range("B23").Select
+    ActiveCell.FormulaR1C1 = "Promedio de materias por profesor:"
+    Range("B24").Select
+    ActiveCell.FormulaR1C1 = "Total de materias por nivel:"
+    Range("B25").Select
+    ActiveCell.FormulaR1C1 = "Nivel Inicial:"
+    Range("B26").Select
+    ActiveCell.FormulaR1C1 = "Nivel Medio:"
+    Range("B27").Select
+    ActiveCell.FormulaR1C1 = "Nivel Avanzado:"
+    Range("D23:D27").Select
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    Range("B23:B27").Select
+    Selection.Font.Bold = True
+    Range("D23:D27").Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Call FormulasPosicionesCeldas
+    
+End Sub
+
+Sub ResultadoModelo1()
+    
+    Dim profesores As Long
+    Dim niveles As Long
+    Dim ra As Long
+    Dim materias As Long
+    Dim materias2 As Long
+    Dim a As Long
+    Dim b As Long
+    
+    profesores = UserForm1.i_profesores.Value
+    niveles = UserForm1.k_niveles.Value
+    ra = UserForm1.l_RA.Value
+    materias = UserForm1.j_materias.Value
+    materias2 = ra * niveles
+    a = 3 + materias2
+    b = a + materias2
+
+    Application.ScreenUpdating = False
+    Sheets.Add After:=Sheets("POSICIONES_CELDAS")
+    ActiveSheet.Name = "RESULTADO_MODELO1"
+    Sheets("RESULTADO_MODELO1").Select
+    Range("A" & VBA.CStr(a)).Select
+    ActiveCell.FormulaR1C1 = "ORDEN"
+    Range("B" & VBA.CStr(a)).Select
+    ActiveCell.FormulaR1C1 = "RESULTADO"
+    Range("C" & VBA.CStr(a)).Select
+    ActiveCell.FormulaR1C1 = "MATERIA"
+    Range("D" & VBA.CStr(a)).Select
+    ActiveCell.FormulaR1C1 = "PARALELO"
+    Range("E" & VBA.CStr(a)).Select
+    ActiveCell.FormulaR1C1 = "TÉRMINO"
+    Range("F" & VBA.CStr(a)).Select
+    ActiveCell.FormulaR1C1 = "PROFESOR"
+    Cells.Select
+    With Selection.Font
+        .Name = "Arial"
+        .Size = 11
+        .ThemeColor = xlThemeColorLight1
+    End With
+    Range("A" & VBA.CStr(a) & ":F" & VBA.CStr(a)).Select
+    Selection.Font.Bold = True
+    Columns("B:B").ColumnWidth = 15.78
+    Columns("D:D").ColumnWidth = 13.11
+    Columns("E:E").ColumnWidth = 12.22
+    Columns("F:F").ColumnWidth = 45
+    Columns("C:C").ColumnWidth = 72
+    Range("A" & VBA.CStr(a + 1)).Select
+    ActiveCell.FormulaR1C1 = "1"
+    Range("A" & VBA.CStr(a + 2)).Select
+    ActiveCell.FormulaR1C1 = "2"
+    Range("A" & VBA.CStr(a + 1) & ":A" & VBA.CStr(a + 2)).Select
+    Selection.AutoFill Destination:=Range("A" & VBA.CStr(a + 1) & ":A" & VBA.CStr(b)), Type:=xlFillDefault
+    Range("A" & VBA.CStr(a + 1) & ":A" & VBA.CStr(b)).Select
+    Range("A2:A" & VBA.CStr(a - 2)).Select
+    Selection.Copy
+    Range("B" & VBA.CStr(a + 1)).Select
+    ActiveSheet.Paste
+    Range("C" & VBA.CStr(a + 1)).Select
+    Application.CutCopyMode = False
+    Range("A" & VBA.CStr(a) & ":F" & VBA.CStr(b)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Range("A" & VBA.CStr(a + 1)).Select
+    Range(Selection, Selection.End(xlDown)).Select
+    Selection.Font.Bold = True
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 10498160
+    End With
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("A" & VBA.CStr(a)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorLight1
+    End With
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("B" & VBA.CStr(a) & ":F" & VBA.CStr(a)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 6299648
+    End With
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("B" & VBA.CStr(a + 1) & ":F" & VBA.CStr(b)).Select
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    ActiveWindow.DisplayGridlines = False
+    Rows(VBA.CStr(b + 3) & ":" & VBA.CStr(b + 3)).Select
+    Range(Selection, Selection.End(xlDown)).Select
+    Selection.EntireRow.Hidden = True
+    Call FormulasResultadoModelo1
+    Call FormulasTablasGeneradas2
+    Application.GoTo Range("A1"), True
+    Application.ScreenUpdating = True
+    
+End Sub
+
+Sub ResultadoModelo2()
+    
+    Dim profesores As Long
+    Dim niveles As Long
+    Dim ra As Long
+    Dim materias As Long
+    Dim materias2 As Long
+    Dim a As Long
+    Dim b As Long
+    
+    profesores = UserForm1.i_profesores.Value
+    niveles = UserForm1.k_niveles.Value
+    ra = UserForm1.l_RA.Value
+    materias = UserForm1.j_materias.Value
+    materias2 = ra * niveles
+    a = 3 + materias2
+    b = a + materias2
+    
+    Application.ScreenUpdating = False
+    Sheets.Add After:=Sheets("RESULTADO_MODELO1")
+    ActiveSheet.Name = "RESULTADO_MODELO2"
+    Sheets("RESULTADO_MODELO2").Select
+    Range("A" & VBA.CStr(a)).Select
+    ActiveCell.FormulaR1C1 = "ORDEN"
+    Range("B" & VBA.CStr(a)).Select
+    ActiveCell.FormulaR1C1 = "RESULTADO"
+    Range("C" & VBA.CStr(a)).Select
+    ActiveCell.FormulaR1C1 = "MATERIA"
+    Range("D" & VBA.CStr(a)).Select
+    ActiveCell.FormulaR1C1 = "PARALELO"
+    Range("E" & VBA.CStr(a)).Select
+    ActiveCell.FormulaR1C1 = "TÉRMINO"
+    Range("F" & VBA.CStr(a)).Select
+    ActiveCell.FormulaR1C1 = "PROFESOR"
+    Cells.Select
+    With Selection.Font
+        .Name = "Arial"
+        .Size = 11
+        .ThemeColor = xlThemeColorLight1
+    End With
+    Range("A" & VBA.CStr(a) & ":F" & VBA.CStr(a)).Select
+    Selection.Font.Bold = True
+    Columns("B:B").ColumnWidth = 15.78
+    Columns("D:D").ColumnWidth = 13.11
+    Columns("E:E").ColumnWidth = 12.22
+    Columns("F:F").ColumnWidth = 45
+    Columns("C:C").ColumnWidth = 72
+    Range("A" & VBA.CStr(a + 1)).Select
+    ActiveCell.FormulaR1C1 = "1"
+    Range("A" & VBA.CStr(a + 2)).Select
+    ActiveCell.FormulaR1C1 = "2"
+    Range("A" & VBA.CStr(a + 1) & ":A" & VBA.CStr(a + 2)).Select
+    Selection.AutoFill Destination:=Range("A" & VBA.CStr(a + 1) & ":A" & VBA.CStr(b)), Type:=xlFillDefault
+    Range("A" & VBA.CStr(a + 1) & ":A" & VBA.CStr(b)).Select
+    Range("A2:A" & VBA.CStr(a - 2)).Select
+    Selection.Copy
+    Range("B" & VBA.CStr(a + 1)).Select
+    ActiveSheet.Paste
+    Range("C" & VBA.CStr(a + 1)).Select
+    Application.CutCopyMode = False
+    Range("A" & VBA.CStr(a) & ":F" & VBA.CStr(b)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Range("A" & VBA.CStr(a + 1)).Select
+    Range(Selection, Selection.End(xlDown)).Select
+    Selection.Font.Bold = True
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 10498160
+    End With
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("A" & VBA.CStr(a)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorLight1
+    End With
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("B" & VBA.CStr(a) & ":F" & VBA.CStr(a)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 6299648
+    End With
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("B" & VBA.CStr(a + 1) & ":F" & VBA.CStr(b)).Select
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    ActiveWindow.DisplayGridlines = False
+    Rows(VBA.CStr(b + 3) & ":" & VBA.CStr(b + 3)).Select
+    Range(Selection, Selection.End(xlDown)).Select
+    Selection.EntireRow.Hidden = True
+    Sheets("RESULTADO_MODELO2").Select
+    Application.GoTo Range("A1"), True
+    Application.ScreenUpdating = True
+    Call FormulasResultadoModelo2
+    
+End Sub
+
+Sub ReporteFinal()
+    
+    Dim profesores As Long
+    Dim niveles As Long
+    Dim ra As Long
+    Dim materias As Long
+    Dim materias2 As Long
+    Dim a As Long
+    Dim b As Long
+    Dim c As Long
+    Dim d As Long
+    Dim e As Long
+    Dim f As Long
+    Dim g As Long
+    Dim h As Long
+    
+    profesores = UserForm1.i_profesores.Value
+    niveles = UserForm1.k_niveles.Value
+    ra = UserForm1.l_RA.Value
+    materias = UserForm1.j_materias.Value
+    materias2 = ra * niveles
+    a = 4 + ra
+    b = a + 2
+    c = b + 1
+    d = c + 1
+    e = d + materias2
+    f = e + 2
+    g = f + 2
+    h = g + profesores
+    
+    Application.ScreenUpdating = False
+    Sheets.Add After:=Sheets("RESULTADO_MODELO2")
+    ActiveSheet.Name = "REPORTE_FINAL"
+    Sheets("REPORTE_FINAL").Select
+    Range("B2").Select
+    ActiveCell.FormulaR1C1 = "REPORTE FINAL"
+    Range("B4").Select
+    Columns("A:A").ColumnWidth = 4
+    Cells.Select
+    With Selection.Font
+        .Name = "Arial"
+        .Size = 11
+        .ThemeColor = xlThemeColorLight1
+    End With
+    Range("B4").Select
+    ActiveCell.FormulaR1C1 = "RESULTADOS DE APRENDIZAJE"
+    Range("B5").Select
+    ActiveCell.FormulaR1C1 = "1"
+    Range("B6").Select
+    ActiveCell.FormulaR1C1 = "2"
+    Range("B5:B6").Select
+    Selection.AutoFill Destination:=Range("B5:B" & VBA.CStr(a)), Type:=xlFillDefault
+    Range("B2:" & LetraCol(ra + 6) & VBA.CStr(2)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Selection.Merge
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorLight1
+    End With
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Selection.Font.Bold = True
+    Selection.Font.Size = 14
+    Range("B4:" & LetraCol(ra + 6) & VBA.CStr(4)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Selection.Merge
+    Selection.Font.Bold = True
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 6299648
+    End With
+    Range("B5:B" & VBA.CStr(a)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Selection.Font.Bold = True
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 10498160
+    End With
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("C5:" & LetraCol(ra + 6) & VBA.CStr(5)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Selection.Merge
+    Selection.Copy
+    Range("C6:" & LetraCol(ra + 6) & VBA.CStr(a)).Select
+    Selection.PasteSpecial Paste:=xlPasteFormats, Operation:=xlNone, _
+        SkipBlanks:=False, Transpose:=False
+    Application.CutCopyMode = False
+    Range("C5:" & LetraCol(ra + 6) & VBA.CStr(a)).Select
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    Selection.Borders(xlInsideVertical).LineStyle = xlNone
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Columns("A:A").ColumnWidth = 5.56
+    Columns(LetraCol(ra + 8) & ":XFD").ColumnWidth = 0
+    Columns(LetraCol(ra + 7) & ":" & LetraCol(ra + 7)).ColumnWidth = 6
+    Range("B" & VBA.CStr(d)).Select
+    ActiveCell.FormulaR1C1 = "MATERIA"
+    Range("C" & VBA.CStr(d)).Select
+    ActiveCell.FormulaR1C1 = "NOMBRE"
+    Range("D" & VBA.CStr(d)).Select
+    ActiveCell.FormulaR1C1 = "PARALELO"
+    Range("E" & VBA.CStr(d)).Select
+    ActiveCell.FormulaR1C1 = "TÉRMINO"
+    Range("F" & VBA.CStr(d)).Select
+    ActiveCell.FormulaR1C1 = "PROFESOR"
+    Range("G" & VBA.CStr(d)).Select
+    ActiveCell.FormulaR1C1 = "1"
+    Range("H" & VBA.CStr(d)).Select
+    ActiveCell.FormulaR1C1 = "2"
+    Range("I" & VBA.CStr(d)).Select
+    ActiveCell.FormulaR1C1 = "3"
+    Range("H" & VBA.CStr(d) & ":I" & VBA.CStr(d)).Select
+    Selection.AutoFill Destination:=Range("H" & VBA.CStr(d) & ":" & LetraCol(ra + 6) & VBA.CStr(d)), Type:=xlFillDefault
+    Range("H" & VBA.CStr(d) & ":" & LetraCol(ra + 6) & VBA.CStr(d)).Select
+    Range("G" & VBA.CStr(c)).Select
+    ActiveCell.FormulaR1C1 = "RESULTADOS DE APRENDIZAJE"
+    Range("G" & VBA.CStr(c) & ":" & LetraCol(ra + 6) & VBA.CStr(c)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Selection.Merge
+    Range("B" & VBA.CStr(d + 1)).Select
+    ActiveCell.FormulaR1C1 = "1"
+    Range("B" & VBA.CStr(d + 2)).Select
+    ActiveCell.FormulaR1C1 = "2"
+    Range("B" & VBA.CStr(d + 1) & ":B" & VBA.CStr(d + 2)).Select
+    Selection.AutoFill Destination:=Range("B" & VBA.CStr(d + 1) & ":B" & VBA.CStr(e)), Type:=xlFillDefault
+    Range("B" & VBA.CStr(d + 1) & ":B" & VBA.CStr(e)).Select
+    Range("B" & VBA.CStr(f + 1)).Select
+    ActiveCell.FormulaR1C1 = "PROFESOR"
+    Range("C" & VBA.CStr(f + 1)).Select
+    ActiveCell.FormulaR1C1 = "NOMBRE"
+    Range("D" & VBA.CStr(f + 1)).Select
+    ActiveCell.FormulaR1C1 = "TOTAL RESULTADOS"
+    Range("B" & VBA.CStr(g)).Select
+    ActiveCell.FormulaR1C1 = "1"
+    Range("B" & VBA.CStr(g + 1)).Select
+    ActiveCell.FormulaR1C1 = "2"
+    Range("B" & VBA.CStr(g) & ":B" & VBA.CStr(g + 1)).Select
+    Selection.AutoFill Destination:=Range("B" & VBA.CStr(g) & ":B" & VBA.CStr(h - 1)), Type:=xlFillDefault
+    Range("B" & VBA.CStr(g) & ":B" & VBA.CStr(h - 1)).Select
+    Columns("C:C").ColumnWidth = 33.11
+    Columns("F:F").ColumnWidth = 31.67
+    Range("B" & VBA.CStr(d) & ":" & LetraCol(ra + 6) & VBA.CStr(e)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Range("B" & VBA.CStr(d) & ":B" & VBA.CStr(e) & ",C" & VBA.CStr(d) & ":" & LetraCol(ra + 6) & VBA.CStr(d) & ",G" & VBA.CStr(c) & ":" & LetraCol(ra + 6) & VBA.CStr(c)).Select
+    Range("G" & VBA.CStr(c)).Activate
+    Selection.Font.Bold = True
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("B" & VBA.CStr(d)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorLight1
+    End With
+    Range("B" & VBA.CStr(d + 1) & ":B" & VBA.CStr(e)).Select
+    With Selection.Font
+        .Color = -6279056
+    End With
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 10498160
+    End With
+    Range("C" & VBA.CStr(d) & ":F" & VBA.CStr(d)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 6299648
+    End With
+    Range("G" & VBA.CStr(d) & ":" & LetraCol(ra + 6) & VBA.CStr(d)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 10498160
+    End With
+    Range("G" & VBA.CStr(c) & ":" & LetraCol(ra + 6) & VBA.CStr(c)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 6299648
+    End With
+    Range("C" & VBA.CStr(d + 1) & ":" & LetraCol(ra + 6) & VBA.CStr(e)).Select
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Columns("E:E").ColumnWidth = 12
+    Columns("D:D").ColumnWidth = 12.89
+    Range("B14").Select
+    Columns("A:A").ColumnWidth = 4.44
+    Columns("O:O").ColumnWidth = 5.56
+    Columns(LetraCol(ra + 8) & ":XFD").ColumnWidth = 0
+    Columns(LetraCol(ra + 7)).ColumnWidth = 4.89
+    Range("B43:E55").Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+    End With
+    Range("B" & VBA.CStr(f + 1) & ":B" & VBA.CStr(h - 1)).Select
+    Selection.Font.Bold = True
+    Range("B" & VBA.CStr(f + 1) & ":B" & VBA.CStr(h - 1) & ",C" & VBA.CStr(f + 1) & ":D" & VBA.CStr(f + 1)).Select
+    Range("C" & VBA.CStr(f + 1)).Activate
+    Selection.Font.Bold = True
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+    End With
+    Range("B" & VBA.CStr(f + 1)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorLight1
+    End With
+    Range("C" & VBA.CStr(f + 1) & ":D" & VBA.CStr(f + 1)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 6299648
+    End With
+    Range("B" & VBA.CStr(g) & ":B" & VBA.CStr(h - 1)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 10498160
+    End With
+    Range("C" & VBA.CStr(g) & ":D" & VBA.CStr(h - 1)).Select
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .ColorIndex = xlAutomatic
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ThemeColor = 1
+        .TintAndShade = -0.249946592608417
+        .Weight = xlThin
+    End With
+    Columns("B:B").ColumnWidth = 12.22
+    Columns("D:D").ColumnWidth = 22.56
+    Range("B2" & ":" & LetraCol(ra + 6) & VBA.CStr(2)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 192
+    End With
+    ActiveWindow.Zoom = 90
+    Columns("B:B").ColumnWidth = 13.44
+    Rows(VBA.CStr(h + 2) & ":" & VBA.CStr(h + 2)).Select
+    Range(Selection, Selection.End(xlDown)).Select
+    Selection.EntireRow.Hidden = True
+    Rows(VBA.CStr(h + 1) & ":" & VBA.CStr(h + 1)).Select
+    Rows(VBA.CStr(b) & ":" & VBA.CStr(b)).Select
+    Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
+    Range("B" & VBA.CStr(b)).Select
+    ActiveCell.FormulaR1C1 = _
+        "Asignación de profesores a resultados de aprendizaje:"
+    Rows(VBA.CStr(f + 1) & ":" & VBA.CStr(f + 1)).Select
+    Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
+    Range("B" & VBA.CStr(f + 1)).Select
+    ActiveCell.FormulaR1C1 = "Total de resultados de aprendizaje por profesor:"
+    Range("D" & VBA.CStr(g + 1)).Select
+    ActiveCell.FormulaR1C1 = "TOTAL"
+    Range("D" & VBA.CStr(g + 2)).Select
+    Columns("D:D").ColumnWidth = 15.56
+    Columns("B:B").ColumnWidth = 14.44
+    Range("B" & VBA.CStr(b)).Select
+    Selection.Cut
+    Range("B" & VBA.CStr(c)).Select
+    ActiveSheet.Paste
+    Rows(VBA.CStr(b) & ":" & VBA.CStr(b)).Select
+    Selection.Delete Shift:=xlUp
+    Rows(VBA.CStr(h + 3) & ":" & VBA.CStr(h + 3)).Select
+    Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
+    Rows(VBA.CStr(h + 3) & ":" & VBA.CStr(h + 4)).Select
+    Selection.EntireRow.Hidden = True
+    Rows("2:2").RowHeight = 24.6
+    Range("B2:" & LetraCol(ra + 6) & VBA.CStr(2)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .MergeCells = True
+    End With
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorAccent6
+        .TintAndShade = -0.499984740745262
+    End With
+    Range("B" & VBA.CStr(g) & ":B" & VBA.CStr(h) & ",C" & VBA.CStr(g) & ":D" & VBA.CStr(g)).Select
+    Range("C" & VBA.CStr(g)).Activate
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+        .ReadingOrder = xlContext
+    End With
+    Columns("C:C").ColumnWidth = 55
+    Columns("F:F").ColumnWidth = 45
+    ActiveWindow.DisplayGridlines = False
+    Range("B" & VBA.CStr(b)).Font.Bold = True
+    Range("B" & VBA.CStr(f)).Font.Bold = True
+    Application.GoTo Range("B2"), True
+    Call FormulasReporteFinal
+    
+End Sub
