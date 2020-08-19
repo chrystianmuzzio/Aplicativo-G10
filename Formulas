@@ -152,11 +152,11 @@ Sub FormulasIngresoData()
         .ShowInput = True
         .ShowError = True
     End With
-    Range("H" & VBA.CStr(i_id + 1) & ":H" & VBA.CStr(j_id + 1)).Select
+    Range("H" & VBA.CStr(i_id + 1) & ":H" & VBA.CStr(j_id)).Select
     With Selection.Validation
         .Delete
         .Add Type:=xlValidateList, AlertStyle:=xlValidAlertStop, Operator:= _
-        xlBetween, Formula1:="=$C$35:$C$37"
+        xlBetween, Formula1:="=$C$" & VBA.CStr(f_id + 1) & ":$C$" & VBA.CStr(g_id)
         .IgnoreBlank = True
         .InCellDropdown = True
         .InputTitle = ""
